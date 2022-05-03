@@ -54,7 +54,8 @@ Just put the component in your application through any functions where you can s
   ),
 ```
  `CountryCode` object can be used to manipulate the selected country code by the user.
-| | Type| Description |
+ 
+| Fields | Type| Description |
 |------------|-----------:|------:|
 | **name** | String | The name of the country |
 | **code** | String| The 2 character ISO code of the country|
