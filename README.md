@@ -1,7 +1,7 @@
+
 # fl_country_code_picker
 
-[![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
-[![License: MIT][license_badge]][license_link]
+[![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link][![License: MIT][license_badge]][license_link]
 
 A Flutter package for showing a modal that contains country dial code. The user can also search for the available codes and select right from the modal.
 
@@ -12,7 +12,6 @@ A Flutter package for showing a modal that contains country dial code. The user 
 # Flutter Country Code Picker
 
 Disclaimer, this idea originally came from: [country_code_picker]: https://pub.dev/packages/country_code_picker package.
-
 With this package you can show a country code selector and manipulate the selected `CountryCode` model.
 
 ## 🔨 Installation
@@ -29,7 +28,7 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 
 ## 🕹️ Usage
 
-Just put the component in your application through `VoidCallback` or any functions where you can call the picker.
+Just put the component in your application through any functions where you can show the picker.
 
 ```dart
   GestureDetector(
@@ -54,12 +53,29 @@ Just put the component in your application through `VoidCallback` or any functio
     ),
   ),
 ```
+ `CountryCode` object can be used to manipulate the selected country code by the user.
+| | Type| Description |
+|------------|-----------:|------:|
+| **name** | String | The name of the country |
+| **code** | String| The 2 character ISO code of the country|
+| **dialCode** | String | The country dial code. By convention, international telephone numbers are represented by prefixing the country code with a plus sign (+). e.g. `+1` for *U*S |
+| **flagImage** | Widget| Widget that can be used on retrieving the selected country flag's image. |
+
 
 ## Examples
-Mobile `iOS`
-<img src="https://raw.githubusercontent.com/Salvatore-Giordano/CountryCodePicker/master/screenshots/screen1.png" width="240"/>
-Mobile `android`
-<img src="https://raw.githubusercontent.com/Salvatore-Giordano/CountryCodePicker/master/screenshots/screen2.png" width="240"/>
+Mobile and Web preview
+<div style="text-align: center">
+    <table>
+        <tr>
+            <td style="text-align: center">
+            <img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/fl_gif_1.gif?raw=true" width="200"/>
+            </td>            
+            <td style="text-align: center">
+            <img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/fl_gif_2.gif?raw=true" width="200"/>
+            </td>
+        </tr>
+    </table>
+</div>
 
 ## 🐞 Bugs/Requests
 
