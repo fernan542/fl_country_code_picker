@@ -11,7 +11,7 @@ A Flutter package for showing a modal that contains country dial code. The user 
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 # Flutter Country Code Picker
 
-Disclaimer, this idea originally came from: [country_code_picker]: https://pub.dev/packages/country_code_picker package.
+Disclaimer, this idea originally came from: [country_code_picker](https://pub.dev/packages/country_code_picker) package.
 With this package you can show a country code selector and manipulate the selected `CountryCode` model.
 
 ## 🔨 Installation
