@@ -1,22 +1,24 @@
+import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 
+/// Modal and TextField borderRadius.
 const Radius borderRadius = Radius.circular(10);
 
 /// Show a modal as bottom sheet.
-Future<T?> showModal<T>({
+Future<CountryCode?> showModal<CountryCode>({
   required BuildContext context,
-  required Widget child,
   double maxHeight = 300,
   double minHeight = 150,
   bool enableDrag = true,
-  Color backgroundColor = Colors.white,
+  Color backgroundColor = const Color(0xFFFFFFFF),
+  Color barrierColor = const Color(0x50000000),
   bool isFullScreen = false,
 }) {
   final fullScreenHeight = MediaQuery.of(context).size.height;
   final allowance = MediaQuery.of(context).padding.top -
       MediaQuery.of(context).padding.bottom;
 
-  return showModalBottomSheet(
+  return showModalBottomSheet<CountryCode?>(
     context: context,
     isScrollControlled: true,
     elevation: 0,
@@ -29,12 +31,12 @@ Future<T?> showModal<T>({
     enableDrag: enableDrag,
     isDismissible: true,
     backgroundColor: backgroundColor,
-    barrierColor: Colors.black.withOpacity(0.2),
+    barrierColor: barrierColor,
     clipBehavior: Clip.hardEdge,
     constraints: BoxConstraints(
       maxHeight: isFullScreen ? fullScreenHeight - allowance : maxHeight,
       minHeight: minHeight,
     ),
-    builder: (_) => child,
+    builder: (_) => const CountryCodePickerModal(),
   );
 }

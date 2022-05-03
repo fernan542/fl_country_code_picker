@@ -872,7 +872,7 @@ const List<Map<String, String>> codes = [
     "dial_code": "+51",
   },
   {
-    "name": "Pilipinas",
+    "name": "Philippines",
     "code": "PH",
     "dial_code": "+63",
   },

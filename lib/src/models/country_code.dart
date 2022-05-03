@@ -57,7 +57,21 @@ class CountryCode {
   Widget get flagImage => CountryCodeFlag(flagUri: _flagUri);
 
   @override
-  String toString() => dialCode;
+  String toString() =>
+      ''' CountryCode: { name: $name, code: $code, dialCode: $dialCode } ''';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is CountryCode &&
+        other.name == name &&
+        other.code == code &&
+        other.dialCode == dialCode;
+  }
+
+  @override
+  int get hashCode => name.hashCode ^ code.hashCode ^ dialCode.hashCode;
 }
 
 /// {@template country_code_flag}

@@ -37,7 +37,6 @@ class FlCountryCodePicker {
       isFullScreen: isFullScreen,
       maxHeight: pickerMaxHeight,
       minHeight: pickerMinHeight,
-      child: const CountryCodePickerModal(),
     );
     return country;
   }
