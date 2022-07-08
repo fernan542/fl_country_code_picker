@@ -53,17 +53,19 @@ final countryPicker = const FlCountryCodePicker();
 ```
 ### FlCountryCodePicker
  **`FlCountryCodePicker`** class contains all of the functionalities of this package. This contains (optional) properties that can be supply to achieve some customization at the picker's view.
+
 | Fields | Type| Description |
-|------------|----------------:|--------:|
+|:---:|:---:|:---|
 | **favorites** | List<String> |  Favorite countries that can be shown at the top of the list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
 | **filteredCountries** | List<String> | Filters all of the [CountryCode]s available and only show the codes that are existing in this list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
 | **favoriteIcon** | Icon | Custom icon of favorite countries. Defaults to `Icons.favorite` |
 | **showSearchBar** | bool | Property for showing search bar. Defaults to `true`. |
- 
+
 ### CountryCode
  **`CountryCode`** model can be used to manipulate the selected country code by the user.
+
 | Fields | Type| Description |
-|------------|-----------:|------:|
+|:---:|:---:|:---|
 | **name** | String | The name of the country |
 | **code** | String| The 2 character ISO code of the country|
 | **dialCode** | String | The country dial code. By convention, international telephone numbers are represented by prefixing the country code with a plus sign (+). e.g. `+1` for *US* |
