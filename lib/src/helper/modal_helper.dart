@@ -7,12 +7,16 @@ const Radius borderRadius = Radius.circular(10);
 /// Show a modal as bottom sheet.
 Future<CountryCode?> showModal<CountryCode>({
   required BuildContext context,
+  required Icon customIcon,
   double maxHeight = 300,
   double minHeight = 150,
   bool enableDrag = true,
   Color backgroundColor = const Color(0xFFFFFFFF),
   Color barrierColor = const Color(0x50000000),
   bool isFullScreen = false,
+  List<String> favorites = const [],
+  List<String> filteredCountries = const [],
+  bool showSearchBar = false,
 }) {
   final fullScreenHeight = MediaQuery.of(context).size.height;
   final allowance = MediaQuery.of(context).padding.top -
@@ -37,6 +41,11 @@ Future<CountryCode?> showModal<CountryCode>({
       maxHeight: isFullScreen ? fullScreenHeight - allowance : maxHeight,
       minHeight: minHeight,
     ),
-    builder: (_) => const CountryCodePickerModal(),
+    builder: (_) => CountryCodePickerModal(
+      favorites: favorites,
+      filteredCountries: filteredCountries,
+      customIcon: customIcon,
+      showSearchBar: showSearchBar,
+    ),
   );
 }
