@@ -9,3 +9,8 @@ Initial release
 - feat: add option for hiding the search bar
 - feat: add support for favorite countries ([#1](https://github.com/fernan542/fl_country_code_picker/issues/1))
 - feat: add support for countries filtering ([#1](https://github.com/fernan542/fl_country_code_picker/issues/1))
+
+## 0.0.3
+
+- feat: add an automatic scroller if initial country was supplied
+- feat: add an option for automatic scrolling at current device's system locale country code

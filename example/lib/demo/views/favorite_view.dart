@@ -18,7 +18,7 @@ class _FavoritePickerViewState extends State<FavoritePickerView> {
     final favoriteCountries = ['US', 'PH', 'AU', 'JP'];
     countryPicker = FlCountryCodePicker(
       favorites: favoriteCountries,
-      favoriteIcon: const Icon(
+      favoritesIcon: const Icon(
         Icons.star,
         color: Colors.yellow,
       ),

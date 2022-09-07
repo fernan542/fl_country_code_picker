@@ -65,6 +65,7 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
               onTap: () async {
                 final code = await countryPicker.showPicker(
                   context: context,
+                  scrollToDeviceLocale: true,
                 );
                 if (code != null) {
                   setState(() => countryCode = code);

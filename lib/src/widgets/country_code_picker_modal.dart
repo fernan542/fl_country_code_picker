@@ -1,5 +1,6 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 /// {@template country_code_picker_modal}
 /// Widget that can be used on showing a modal as bottom sheet that
@@ -14,8 +15,9 @@ class CountryCodePickerModal extends StatefulWidget {
     Key? key,
     this.favorites = const [],
     this.filteredCountries = const [],
-    required this.customIcon,
+    required this.favoritesIcon,
     required this.showSearchBar,
+    this.focusedCountry,
   }) : super(key: key);
 
   /// {@macro favorites}
@@ -25,10 +27,13 @@ class CountryCodePickerModal extends StatefulWidget {
   final List<String> filteredCountries;
 
   /// {@macro favorite_icon}
-  final Icon customIcon;
+  final Icon favoritesIcon;
 
   /// {@macro show_search_bar}
   final bool showSearchBar;
+
+  /// If not null, automatically scrolls the list view to this country.
+  final String? focusedCountry;
 
   @override
   State<CountryCodePickerModal> createState() => _CountryCodePickerModalState();
@@ -38,16 +43,19 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
   late final List<CountryCode> baseList;
   final availableCountryCodes = <CountryCode>[];
 
-  late TextEditingController controller;
+  late TextEditingController textController;
+  late ItemScrollController itemScrollController;
+
   @override
   void initState() {
     _initCountries();
     super.initState();
   }
 
-  void _initCountries() {
+  Future<void> _initCountries() async {
     final allCountryCodes = codes.map(CountryCode.fromMap).toList();
-    controller = TextEditingController();
+    textController = TextEditingController();
+    itemScrollController = ItemScrollController();
 
     final favoriteList = <CountryCode>[
       if (widget.favorites.isNotEmpty)
@@ -63,11 +71,28 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
 
     baseList = [...favoriteList, ...filteredList];
     availableCountryCodes.addAll(baseList);
+
+    // Temporary fix. Bug when initializing scroll controller.
+    // https://github.com/google/flutter.widgets/issues/62
+    await Future<void>.delayed(Duration.zero);
+
+    if (!itemScrollController.isAttached) return;
+
+    if (widget.focusedCountry != null) {
+      final index = availableCountryCodes.indexWhere(
+        (c) => c.code == widget.focusedCountry,
+      );
+
+      await itemScrollController.scrollTo(
+        index: index,
+        duration: const Duration(milliseconds: 600),
+      );
+    }
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    textController.dispose();
     super.dispose();
   }
 
@@ -88,7 +113,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
                 hintStyle: TextStyle(fontSize: 12),
                 suffixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(borderRadius),
+                  borderRadius: BorderRadius.all(kBorderRadius),
                   borderSide: BorderSide(
                     width: 2,
                     style: BorderStyle.none,
@@ -120,20 +145,23 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
             ),
           ),
         Expanded(
-          child: ListView(
-            children: [
-              for (final code in availableCountryCodes)
-                ListTile(
-                  onTap: () => Navigator.pop(context, code),
-                  leading: code.flagImage,
-                  title: Text(code.name),
-                  trailing: _ListTrailing(
-                    code: code,
-                    favorites: widget.favorites,
-                    icon: widget.customIcon,
-                  ),
-                )
-            ],
+          child: ScrollablePositionedList.builder(
+            itemScrollController: itemScrollController,
+            itemCount: availableCountryCodes.length,
+            itemBuilder: (context, index) {
+              final code = availableCountryCodes[index];
+
+              return ListTile(
+                onTap: () => Navigator.pop(context, code),
+                leading: code.flagImage,
+                title: Text(code.name),
+                trailing: _ListTrailing(
+                  code: code,
+                  favorites: widget.favorites,
+                  icon: widget.favoritesIcon,
+                ),
+              );
+            },
           ),
         ),
       ],

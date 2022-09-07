@@ -58,8 +58,20 @@ final countryPicker = const FlCountryCodePicker();
 |:---:|:---:|:---|
 | **favorites** | List<String> |  Favorite countries that can be shown at the top of the list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
 | **filteredCountries** | List<String> | Filters all of the [CountryCode]s available and only show the codes that are existing in this list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
-| **favoriteIcon** | Icon | Custom icon of favorite countries. Defaults to `Icons.favorite` |
+| **favoritesIcon** | Icon | Custom icon of favorite countries. Defaults to `Icons.favorite` |
 | **showSearchBar** | bool | Property for showing search bar. Defaults to `true`. |
+
+### showPicker
+ **`showPicker`** method under FlCountryCodePicker class can be used to show a country code picker.
+
+| Fields | Type| Description |
+|:---:|:---:|:---|
+| **context** | **BuildContext** | A handle to the location of a widget in the widget tree. `Required`.|
+| **isFullScreen** | bool | Shows the modal in full screen mode. Defaults to `false`. |
+| **pickerMinHeight** | double | Picker modal constraints for minimum height. Defaults to `150`. |
+| **pickerMaxHeight** | double | Picker modal constraints for maximum height. Defaults to `500`. |
+| **scrollToDeviceLocale** | bool | Property to automatically scroll at device's locale within the picker. Defaults to `false`. |
+| **initialSelectedLocale** | String? | The 2 character ISO code of the country where the scrollController will automatically scroll to. |
 
 ### CountryCode
  **`CountryCode`** model can be used to manipulate the selected country code by the user.
@@ -67,7 +79,7 @@ final countryPicker = const FlCountryCodePicker();
 | Fields | Type| Description |
 |:---:|:---:|:---|
 | **name** | String | The name of the country |
-| **code** | String| The 2 character ISO code of the country|
+| **code** | String | The 2 character ISO code of the country|
 | **dialCode** | String | The country dial code. By convention, international telephone numbers are represented by prefixing the country code with a plus sign (+). e.g. `+1` for *US* |
 | **flagImage** | Widget| Widget that can be used on retrieving the selected country flag's image. |
 
@@ -75,7 +87,7 @@ final countryPicker = const FlCountryCodePicker();
 
 
 ## Examples
-|  |  |
+| Example View | Preview (from package's example folder) |
 | :---: | :---: |
 | Default Picker View |<img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/default-view.gif?raw=true" width="200"/>|
 | Picker with Favorites |<img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-favorites.gif?raw=true" width="200"/>|
