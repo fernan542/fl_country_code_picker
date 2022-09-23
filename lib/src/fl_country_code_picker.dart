@@ -96,7 +96,7 @@ class FlCountryCodePicker {
         MediaQuery.of(context).padding.bottom;
 
     // Gets the country code of the device.
-    final locale = WidgetsBinding.instance?.window.locale.countryCode;
+    final locale = WidgetsBinding.instance.window.locale.countryCode;
 
     final country = showModalBottomSheet<CountryCode?>(
       context: context,
@@ -108,8 +108,6 @@ class FlCountryCodePicker {
           topRight: kBorderRadius,
         ),
       ),
-      enableDrag: true,
-      isDismissible: true,
       backgroundColor: _kBackgroundColor,
       barrierColor: _kBarrierColor,
       clipBehavior: Clip.hardEdge,

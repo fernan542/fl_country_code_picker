@@ -14,3 +14,7 @@ Initial release
 
 - feat: add an automatic scroller if initial country was supplied
 - feat: add an option for automatic scrolling at current device's system locale country code
+
+## 0.0.3+1
+
+- chore(dependency): updates version of `scrollable_positioned_list` to 0.3.4
