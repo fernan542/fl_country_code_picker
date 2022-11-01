@@ -17,6 +17,7 @@ class CountryCodePickerModal extends StatefulWidget {
     this.filteredCountries = const [],
     required this.favoritesIcon,
     required this.showSearchBar,
+    required this.showDialCode,
     this.focusedCountry,
   }) : super(key: key);
 
@@ -31,6 +32,9 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// {@macro show_search_bar}
   final bool showSearchBar;
+
+  /// {@macro show_dial_code}
+  final bool showDialCode;
 
   /// If not null, automatically scrolls the list view to this country.
   final String? focusedCountry;
@@ -48,8 +52,8 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
 
   @override
   void initState() {
-    _initCountries();
     super.initState();
+    _initCountries();
   }
 
   Future<void> _initCountries() async {
@@ -159,6 +163,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
                   code: code,
                   favorites: widget.favorites,
                   icon: widget.favoritesIcon,
+                  showDialCode: widget.showDialCode,
                 ),
               );
             },
@@ -175,27 +180,31 @@ class _ListTrailing extends StatelessWidget {
     required this.code,
     required this.favorites,
     required this.icon,
+    required this.showDialCode,
   }) : super(key: key);
   final CountryCode code;
   final List<String> favorites;
   final Icon icon;
+  final bool showDialCode;
 
   @override
   Widget build(BuildContext context) {
-    if (favorites.isEmpty) return Text(code.dialCode);
-
-    final index = favorites.indexWhere((f) => f == code.code);
-    final iconWidth = MediaQuery.of(context).size.width * 0.2;
-    return SizedBox(
-      width: iconWidth,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(code.dialCode),
-          if (index != -1) icon,
-        ],
-      ),
-    );
+    if (favorites.isNotEmpty) {
+      final index = favorites.indexWhere((f) => f == code.code);
+      final iconWidth = MediaQuery.of(context).size.width * 0.2;
+      return SizedBox(
+        width: iconWidth,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            if (showDialCode) Text(code.dialCode) else const SizedBox(),
+            if (index != -1) icon,
+          ],
+        ),
+      );
+    } else {
+      return showDialCode ? Text(code.dialCode) : const SizedBox();
+    }
   }
 }
 

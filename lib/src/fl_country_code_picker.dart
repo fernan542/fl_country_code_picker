@@ -26,6 +26,7 @@ class FlCountryCodePicker {
     this.filteredCountries = const [],
     this.favoritesIcon = _kFavoritesIcon,
     this.showSearchBar = true,
+    this.showDialCode = true,
   });
 
   /// Convinience getter for all of the available country codes.
@@ -69,6 +70,13 @@ class FlCountryCodePicker {
   /// {@endtemplate}
   final bool showSearchBar;
 
+  /// {@template show_dial_code}
+  /// An optional argument for showing dial code.
+  ///
+  /// Defaults to `true`.
+  /// {@endtemplate}
+  final bool showDialCode;
+
   /// Shows the [CountryCodePickerModal] modal.
   ///
   /// Props:
@@ -97,7 +105,6 @@ class FlCountryCodePicker {
 
     // Gets the country code of the device.
     final locale = WidgetsBinding.instance.window.locale.countryCode;
-
     final country = showModalBottomSheet<CountryCode?>(
       context: context,
       isScrollControlled: true,
@@ -120,6 +127,7 @@ class FlCountryCodePicker {
         filteredCountries: filteredCountries,
         favoritesIcon: favoritesIcon,
         showSearchBar: showSearchBar,
+        showDialCode: showDialCode,
         focusedCountry: scrollToDeviceLocale ? locale : initialSelectedLocale,
       ),
     );
