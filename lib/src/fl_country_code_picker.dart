@@ -71,7 +71,7 @@ class FlCountryCodePicker {
   final bool showSearchBar;
 
   /// {@template show_dial_code}
-  /// An optional argument for showing dial code.
+  /// An optional argument for showing dial code at country tiles.
   ///
   /// Defaults to `true`.
   /// {@endtemplate}

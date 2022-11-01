@@ -1,23 +1,20 @@
 
+
 # fl_country_code_picker
 
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link][![License: MIT][license_badge]][license_link]
 
-A Flutter package for showing a modal that contains country dial code. The user can also search for the available codes and select right from the modal.
+A Flutter package for showing a modal that contains country dial code. The user can search for the available codes and select right from the modal. This also has an [automatic scrolling](https://pub.dev/packages/fl_country_code_picker#showpicker) feature that points at current device's locale.
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
-# Flutter Country Code Picker
-
-Disclaimer, this idea originally came from: [country_code_picker](https://pub.dev/packages/country_code_picker) package.
-With this package you can show a country code selector and manipulate the selected `CountryCode` model.
 
 ## 🔨 Installation
 ```yaml
 dependencies:
-  fl_country_code_picker: ^0.0.1
+  fl_country_code_picker: ^0.0.4
 ```
 
 ### ⚙ Import
@@ -59,7 +56,8 @@ final countryPicker = const FlCountryCodePicker();
 | **favorites** | List<String> |  Favorite countries that can be shown at the top of the list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
 | **filteredCountries** | List<String> | Filters all of the [CountryCode]s available and only show the codes that are existing in this list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
 | **favoritesIcon** | Icon | Custom icon of favorite countries. Defaults to `Icons.favorite` |
-| **showSearchBar** | bool | Property for showing search bar. Defaults to `true`. |
+| **showSearchBar** | bool | An optional argument for showing search bar. Defaults to `true`. |
+| **showDialCode** | bool | An optional argument for showing dial code at country tiles. Defaults to `true`. |
 
 ### showPicker
  **`showPicker`** method under FlCountryCodePicker class can be used to show a country code picker.
@@ -92,7 +90,7 @@ final countryPicker = const FlCountryCodePicker();
 | Default Picker View |<img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/default-view.gif?raw=true" width="200"/>|
 | Picker with Favorites |<img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-favorites.gif?raw=true" width="200"/>|
 | Picker with Filter |<img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-filter.gif?raw=true" width="200"/>|
-| Picker with Filter |<img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-favorite-and-filter.gif?raw=true" width="200"/>|
+| Picker with Favorite and Filter |<img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-favorite-and-filter.gif?raw=true" width="200"/>|
 
 
 ## 🐞 Bugs/Requests

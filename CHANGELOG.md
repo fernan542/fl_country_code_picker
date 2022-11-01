@@ -18,3 +18,8 @@ Initial release
 ## 0.0.3+1
 
 - chore(dependency): updates version of `scrollable_positioned_list` to 0.3.4
+
+## 0.0.4
+
+- feat: add a flag for showing a country dial code at country tiles ([#4](https://github.com/fernan542/fl_country_code_picker/pull/4))
+- docs: update description and instruction at ReadMe
