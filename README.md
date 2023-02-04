@@ -63,8 +63,9 @@ Call the modal for country code picker.
 
 ### FlCountryCodePicker
 **`FlCountryCodePicker`** class contains all of the functionalities of this package. This contains (optional) properties that can be supply to achieve customization at picker's view or appearance.
+
 | Fields | Type| Description |
-|:---:|:---:|:---|
+| :---: | :---: | :---: |
 | **favorites** | `List<String>?` | Favorite countries that can be shown at the top of the list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
 | **favoritesIcon** | `Icon` | Custom icon of favorite countries. Defaults to ❤️. |
 | **filteredCountries** | `List<String>?` | Filters all of the [CountryCode]s available and only show the codes that are existing in this list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
@@ -79,6 +80,7 @@ Call the modal for country code picker.
 
 ### showPicker
 **`showPicker`** method under the `FlCountryCodePicker` class that can be used to show the country code picker.
+
 | Fields | Type| Description |
 |:---:|:---:|:---|
 | **context** | `BuildContext` | A handle to the location of a widget in the widget tree. `Required`.|
@@ -91,8 +93,9 @@ Call the modal for country code picker.
 
 ### CountryCode
 **`CountryCode`** model can be used to manipulate the selected country code by the user.
+
 | Fields | Type| Description |
-|:---:|:---:|:---|
+|:---:|:---:|:---:|
 | **name** | `String` | The name of the country |
 | **code** | `String` | The 2 character ISO code of the country|
 | **dialCode** | `String` | The country dial code. By convention, international telephone numbers are represented by prefixing the country code with a plus sign (+). e.g. `+1` for *US* |
@@ -100,6 +103,7 @@ Call the modal for country code picker.
 | **flagUri** | `String` | Uri of this `CountryCode` located at package's directory to supply at `Image` widget if you're going to get the raw flag image. |
 | **flagImagePackage** | `String` | Package to supply at `Image` widget if you're going to get the raw flag image. |
 | **localize** | `String` | Convenient getter for localized version of this country code. |
+
 ----
 
 ### FAQ:
@@ -150,9 +154,6 @@ MaterialApp(
 	// ... some omitted values
 );
 ```
-	
-
-
 
 ## 🐞 Bugs/Requests
 If you encounter any problems feel open an issue. If you feel the library is missing a feature, please raise a ticket on Github and we'll look into it. Pull request are also welcome.
