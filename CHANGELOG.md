@@ -24,7 +24,7 @@ Initial release
 - feat: add a flag for showing a country dial code at country tiles ([#4](https://github.com/fernan542/fl_country_code_picker/pull/4))
 - docs: update description and instruction at ReadMe
 
-## 0.1.0+1
+## 0.1.0+3
 - docs: ReadMe file improvements
 - feat: add support for localization ([#5](https://github.com/fernan542/fl_country_code_picker/issues/5))
 - feat: exposed the flagUri for flag image customization ([#5](https://github.com/fernan542/fl_country_code_picker/issues/5))

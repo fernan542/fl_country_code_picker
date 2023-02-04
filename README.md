@@ -64,8 +64,8 @@ Call the modal for country code picker.
 ### FlCountryCodePicker
 **`FlCountryCodePicker`** class contains all of the functionalities of this package. This contains (optional) properties that can be supply to achieve customization at picker's view or appearance.
 
-| Fields | Type| Description |
-|:---:|:---:|:---:|
+|Fields|Type|Description|
+|:---:|:---:|:---|
 | **favorites** | `List<String>?` | Favorite countries that can be shown at the top of the list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
 | **favoritesIcon** | `Icon` | Custom icon of favorite countries. Defaults to ❤️. |
 | **filteredCountries** | `List<String>?` | Filters all of the [CountryCode]s available and only show the codes that are existing in this list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
@@ -76,12 +76,13 @@ Call the modal for country code picker.
 | **showSearchBar** | `bool` | An optional argument for showing search bar. Defaults to `true`. |
 | **showDialCode** | `bool` | An optional argument for showing dial code at country tiles. Defaults to `true`. |
 | **title** | `Widget?` | An optional argument for modal's title customization. |
+
 ----
 
 ### showPicker
 **`showPicker`** method under the `FlCountryCodePicker` class that can be used to show the country code picker.
 
-| Fields | Type| Description |
+|Fields|Type|Description|
 |:---:|:---:|:---:|
 | **context** | `BuildContext` | A handle to the location of a widget in the widget tree. `Required`.|
 | **isFullScreen** | `bool` | Shows the modal in full screen mode. Defaults to `false`. |
@@ -89,12 +90,13 @@ Call the modal for country code picker.
 | **pickerMaxHeight** | `double` | Picker modal constraints for maximum height. Defaults to `500`. |
 | **scrollToDeviceLocale** | `bool` | Property to automatically scroll at device's locale within the picker. Defaults to `false`. |
 | **initialSelectedLocale** | `String?` | The 2 character ISO code of the country where the scrollController will automatically scroll to. |
+
 ----
 
 ### CountryCode
 **`CountryCode`** model can be used to manipulate the selected country code by the user.
 
-| Fields | Type| Description |
+|Fields|Type|Description|
 |:---:|:---:|:---:|
 | **name** | `String` | The name of the country |
 | **code** | `String` | The 2 character ISO code of the country|
