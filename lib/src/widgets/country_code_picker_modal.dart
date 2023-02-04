@@ -1,4 +1,5 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
+import 'package:fl_country_code_picker/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -13,12 +14,16 @@ class CountryCodePickerModal extends StatefulWidget {
   /// {@macro country_code_picker_modal}
   const CountryCodePickerModal({
     Key? key,
-    this.favorites = const [],
-    this.filteredCountries = const [],
+    required this.localize,
     required this.favoritesIcon,
     required this.showSearchBar,
     required this.showDialCode,
+    required this.showFavoritesIcon,
+    this.title,
     this.focusedCountry,
+    this.searchBarDecoration,
+    this.favorites = const [],
+    this.filteredCountries = const [],
   }) : super(key: key);
 
   /// {@macro favorites}
@@ -33,11 +38,23 @@ class CountryCodePickerModal extends StatefulWidget {
   /// {@macro show_search_bar}
   final bool showSearchBar;
 
+  /// {@macro show_favorites_icon}
+  final bool showFavoritesIcon;
+
   /// {@macro show_dial_code}
   final bool showDialCode;
 
   /// If not null, automatically scrolls the list view to this country.
   final String? focusedCountry;
+
+  /// {@macro title}
+  final Widget? title;
+
+  /// {@macro search_bar_decoration}
+  final InputDecoration? searchBarDecoration;
+
+  /// {@macro localize}
+  final bool localize;
 
   @override
   State<CountryCodePickerModal> createState() => _CountryCodePickerModalState();
@@ -46,8 +63,6 @@ class CountryCodePickerModal extends StatefulWidget {
 class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
   late final List<CountryCode> baseList;
   final availableCountryCodes = <CountryCode>[];
-
-  late TextEditingController textController;
   late ItemScrollController itemScrollController;
 
   @override
@@ -58,7 +73,6 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
 
   Future<void> _initCountries() async {
     final allCountryCodes = codes.map(CountryCode.fromMap).toList();
-    textController = TextEditingController();
     itemScrollController = ItemScrollController();
 
     final favoriteList = <CountryCode>[
@@ -76,10 +90,8 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
     baseList = [...favoriteList, ...filteredList];
     availableCountryCodes.addAll(baseList);
 
-    // Temporary fix. Bug when initializing scroll controller.
-    // https://github.com/google/flutter.widgets/issues/62
+    // Just to add a delay for itemScrollController initialization.
     await Future<void>.delayed(Duration.zero);
-
     if (!itemScrollController.isAttached) return;
 
     if (widget.focusedCountry != null) {
@@ -95,58 +107,32 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
   }
 
   @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _ModalTitle(),
+        widget.title ?? const CcpDefaultModalTitle(),
         if (widget.showSearchBar)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: TextField(
-              keyboardType: TextInputType.text,
-              decoration: const InputDecoration(
-                hintText: "'Country', 'Code' or 'Dial Code'",
-                hintStyle: TextStyle(fontSize: 12),
-                suffixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(kBorderRadius),
-                  borderSide: BorderSide(
-                    width: 2,
-                    style: BorderStyle.none,
-                  ),
-                ),
-                filled: true,
-                contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                fillColor: Colors.white,
-              ),
-              onChanged: (query) {
-                availableCountryCodes
-                  ..clear()
-                  ..addAll(
-                    List<CountryCode>.from(
-                      baseList.where(
-                        (c) =>
-                            c.code
-                                .toLowerCase()
-                                .contains(query.toLowerCase()) ||
-                            c.dialCode
-                                .toLowerCase()
-                                .contains(query.toLowerCase()) ||
-                            c.name.toLowerCase().contains(query.toLowerCase()),
-                      ),
+          CcpDefaultSearchBar(
+            decoration: widget.searchBarDecoration,
+            onChanged: (query) {
+              availableCountryCodes
+                ..clear()
+                ..addAll(
+                  List<CountryCode>.from(
+                    baseList.where(
+                      (c) =>
+                          c.code.toLowerCase().contains(query.toLowerCase()) ||
+                          c.dialCode
+                              .toLowerCase()
+                              .contains(query.toLowerCase()) ||
+                          c.name.toLowerCase().contains(query.toLowerCase()),
                     ),
-                  );
-                setState(() {});
-              },
-            ),
+                  ),
+                );
+              setState(() {});
+            },
           ),
         Expanded(
           child: ScrollablePositionedList.builder(
@@ -154,71 +140,25 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
             itemCount: availableCountryCodes.length,
             itemBuilder: (context, index) {
               final code = availableCountryCodes[index];
+              final name =
+                  widget.localize ? code.localize(context).name : code.name;
 
               return ListTile(
                 onTap: () => Navigator.pop(context, code),
-                leading: code.flagImage,
-                title: Text(code.name),
-                trailing: _ListTrailing(
+                leading: code.flagImage(),
+                title: Text(name),
+                trailing: CcpDefaultListItemTrailing(
                   code: code,
-                  favorites: widget.favorites,
                   icon: widget.favoritesIcon,
+                  favorites: widget.favorites,
                   showDialCode: widget.showDialCode,
+                  showFavoritesIcon: widget.showFavoritesIcon,
                 ),
               );
             },
           ),
         ),
       ],
-    );
-  }
-}
-
-class _ListTrailing extends StatelessWidget {
-  const _ListTrailing({
-    Key? key,
-    required this.code,
-    required this.favorites,
-    required this.icon,
-    required this.showDialCode,
-  }) : super(key: key);
-  final CountryCode code;
-  final List<String> favorites;
-  final Icon icon;
-  final bool showDialCode;
-
-  @override
-  Widget build(BuildContext context) {
-    if (favorites.isNotEmpty) {
-      final index = favorites.indexWhere((f) => f == code.code);
-      final iconWidth = MediaQuery.of(context).size.width * 0.2;
-      return SizedBox(
-        width: iconWidth,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            if (showDialCode) Text(code.dialCode) else const SizedBox(),
-            if (index != -1) icon,
-          ],
-        ),
-      );
-    } else {
-      return showDialCode ? Text(code.dialCode) : const SizedBox();
-    }
-  }
-}
-
-class _ModalTitle extends StatelessWidget {
-  const _ModalTitle({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16),
-      child: Text(
-        'Select your country',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-      ),
     );
   }
 }

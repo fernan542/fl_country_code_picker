@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../demo.dart';
 
-const fieldBorder = OutlineInputBorder(
+const kFieldBorder = OutlineInputBorder(
   borderRadius: BorderRadius.all(Radius.circular(8.0)),
   borderSide: BorderSide(color: Colors.blue, width: 2.0),
 );
+
+const kSpacer = SizedBox(height: 16.0);
 
 class DemoPage extends StatelessWidget {
   const DemoPage({Key? key}) : super(key: key);

@@ -17,11 +17,9 @@ class _FavoritePickerViewState extends State<FavoritePickerView> {
   void initState() {
     final favoriteCountries = ['US', 'PH', 'AU', 'JP'];
     countryPicker = FlCountryCodePicker(
+      showFavoritesIcon: false,
       favorites: favoriteCountries,
-      favoritesIcon: const Icon(
-        Icons.star,
-        color: Colors.yellow,
-      ),
+      favoritesIcon: const Icon(Icons.star, color: Colors.yellow),
     );
     super.initState();
   }
@@ -61,7 +59,7 @@ class _FavoritePickerViewState extends State<FavoritePickerView> {
             labelText: 'Phone',
             fillColor: Colors.white,
             filled: true,
-            border: fieldBorder,
+            border: kFieldBorder,
           ),
         ),
         const SizedBox(height: 32.0),

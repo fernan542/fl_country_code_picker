@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   scrollable_positioned_list: ^0.3.4
 
 dev_dependencies:
@@ -21,3 +23,5 @@ dev_dependencies:
 flutter:
   assets:
     - assets/flags/
+    - packages/fl_country_code_picker/i18n/en.json
+    - packages/fl_country_code_picker/i18n/es.json

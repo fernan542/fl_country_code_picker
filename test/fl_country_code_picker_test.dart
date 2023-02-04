@@ -18,7 +18,7 @@ void main() {
       test('gets list of country codes', () {
         expect(
           picker.countryCodes.runtimeType,
-          <CountryCode>[],
+          List<CountryCode>,
         );
       });
     });

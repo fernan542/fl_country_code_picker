@@ -587,6 +587,11 @@ const List<Map<String, String>> codes = [
     "dial_code": "+82",
   },
   {
+    "name": "Kosovo",
+    "code": "XK",
+    "dial_code": "+383",
+  },
+  {
     "name": "Kuwait",
     "code": "KW",
     "dial_code": "+965",

@@ -55,7 +55,7 @@ class _FilteredPickerViewState extends State<FilteredPickerView> {
             labelText: 'Phone',
             fillColor: Colors.white,
             filled: true,
-            border: fieldBorder,
+            border: kFieldBorder,
           ),
         ),
         const SizedBox(height: 32.0),

@@ -10,10 +10,16 @@ class DefaultPickerView extends StatefulWidget {
 }
 
 class _DefaultPickerViewState extends State<DefaultPickerView> {
-  final countryPicker = const FlCountryCodePicker();
+  late final FlCountryCodePicker countryPicker;
   CountryCode? countryCode;
 
   final countryTextController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    countryPicker = const FlCountryCodePicker();
+  }
 
   @override
   void dispose() {
@@ -38,10 +44,10 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
             labelText: 'Name',
             fillColor: Colors.white,
             filled: true,
-            border: fieldBorder,
+            border: kFieldBorder,
           ),
         ),
-        const SizedBox(height: 20.0),
+        kSpacer,
         TextFormField(
           textInputAction: TextInputAction.done,
           keyboardType: TextInputType.number,
@@ -52,10 +58,10 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
             labelText: 'Job Position',
             fillColor: Colors.white,
             filled: true,
-            border: fieldBorder,
+            border: kFieldBorder,
           ),
         ),
-        const SizedBox(height: 20.0),
+        kSpacer,
         TextFormField(
           textInputAction: TextInputAction.done,
           keyboardType: TextInputType.number,
@@ -86,10 +92,10 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
             labelText: 'Phone',
             fillColor: Colors.white,
             filled: true,
-            border: fieldBorder,
+            border: kFieldBorder,
           ),
         ),
-        const SizedBox(height: 20.0),
+        kSpacer,
         Builder(builder: (context) {
           final _fieldWidth = MediaQuery.of(context).size.width * 0.6;
           final _spacerWidth = MediaQuery.of(context).size.width * 0.1;
@@ -108,16 +114,25 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
                     labelText: 'Country',
                     fillColor: Colors.white,
                     filled: true,
-                    border: fieldBorder,
+                    border: kFieldBorder,
                   ),
                 ),
               ),
               SizedBox(width: _spacerWidth),
-              if (countryCode != null) countryCode!.flagImage
+              if (countryCode != null) countryCode!.flagImage()
             ],
           );
         }),
-        const SizedBox(height: 20.0),
+        kSpacer,
+        if (countryCode != null) const Text('Custom Image widget: '),
+        kSpacer,
+        if (countryCode != null)
+          Image.asset(
+            countryCode!.flagUri,
+            width: 100.0,
+            fit: BoxFit.cover,
+            package: countryCode!.flagImagePackage,
+          ),
       ],
     );
   }
