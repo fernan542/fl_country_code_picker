@@ -108,44 +108,49 @@ Call the modal for country code picker.
 
 ----
 
-### FAQ:
+### ❓ FAQ:
 * **How to use country code's flag directory in `Image` widget?**
  ```dart 
-		Image.asset(
-			 fit: fit,
-			 width: width,
-			 countryCode.flagUri,
-			 alignment: alignment,
-			 package: countryCode.flagImagePackage);
+Image.asset(
+        fit: fit,
+        width: width,
+        countryCode.flagUri,
+        alignment: alignment,
+        package: countryCode.flagImagePackage,
+);
  ```
  
  * **How to change modal's title?**
-	 First, Create your title `Widget`.
+
+First, Create your title `Widget`.
 ```dart
-		const Widget title = Padding(
-			padding: EdgeInsets.all(16),
-			child: Text(
-			'My Title',
-			style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-			),
-		);```
+	const Widget title = Padding(
+		padding: EdgeInsets.all(16),
+		child: Text(
+		'My Title',
+		style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+		),
+	);
 ```
 Then pass it to `FlCountryCodePicker`'s title parameter.
 ```dart
-		countryPicker = const  FlCountryCodePicker(title: title);
+countryPicker = const  FlCountryCodePicker(title: title);
 ```
 
  * **How to enable package's supported localization?**
-  Add the following values at your app's `MaterialApp`
+
+First, import the package and add an alias to prevent other import errors.
+```dart
+import  'package:fl_country_code_picker/fl_country_code_picker.dart' as flc;
+```
+
+Add the following values at your app's `MaterialApp`
 ```dart
 MaterialApp(
 	title: 'Your App',
-	supportedLocales: const [
-		// Supported locales at the moment.
-		// Cannot find your locale? Please make a request.
-		Locale('en'),
-		Locale('es'),
-	],
+	// Supported locales at the moment.
+	// Cannot find your locale? Please make a request.
+	supportedLocales: flc.supportedLocales.map((e) => Locale(e)),
 	localizationsDelegates: const [
 		// Package's localization delegate.
 		CountryLocalizations.delegate,

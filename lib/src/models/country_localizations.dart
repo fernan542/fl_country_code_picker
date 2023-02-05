@@ -4,6 +4,80 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as svc;
 
+/// Importable list of supported locales.
+const List<String> supportedLocales = [
+  'af',
+  'am',
+  'ar',
+  'az',
+  'be',
+  'bg',
+  'bn',
+  'bs',
+  'ca',
+  'cs',
+  'da',
+  'de',
+  'el',
+  'en',
+  'es',
+  'et',
+  'fa',
+  'fi',
+  'fr',
+  'gl',
+  'ha',
+  'he',
+  'hi',
+  'hr',
+  'hu',
+  'hy',
+  'id',
+  'is',
+  'it',
+  'ja',
+  'ka',
+  'kk',
+  'km',
+  'ko',
+  'ku',
+  'ky',
+  'lt',
+  'lv',
+  'mk',
+  'ml',
+  'mn',
+  'ms',
+  'nb',
+  'nl',
+  'nn',
+  'no',
+  'pl',
+  'ps',
+  'pt',
+  'ro',
+  'ru',
+  'sd',
+  'sk',
+  'sl',
+  'so',
+  'sq',
+  'sr',
+  'sv',
+  'ta',
+  'tg',
+  'th',
+  'tk',
+  'tr',
+  'tt',
+  'uk',
+  'ug',
+  'ur',
+  'uz',
+  'vi',
+  'zh',
+];
+
 /// {@template country_localizations}
 /// Localization class that contains the different country name strings
 /// translated into the locales that the package supports.
@@ -69,12 +143,11 @@ class _CountryLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      // Should reflect all of the supported localizations.
-      ['es', 'en'].contains(locale.languageCode);
+      supportedLocales.contains(locale.languageCode);
 
   @override
   Future<CountryLocalizations> load(Locale locale) async {
-    // Refresh the current localizations value based on current
+    // Load/reload the current localizations value based on current
     // selected locale.
     final localizations = CountryLocalizations(locale);
     await localizations.load();

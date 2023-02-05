@@ -152,7 +152,7 @@ class FlCountryCodePicker {
     final allowance = MediaQuery.of(context).padding.top -
         MediaQuery.of(context).padding.bottom;
 
-    // Computations for modal height.
+    // Dynamic modal height computation.
     final maxHeight =
         fullScreen ? fullScreenHeight - allowance : pickerMaxHeight;
 
@@ -161,8 +161,16 @@ class FlCountryCodePicker {
       minHeight: pickerMinHeight,
     );
 
-    // Gets the country code of the device.
-    final locale = WidgetsBinding.instance.window.locale.countryCode;
+    // For automatic scrolling.
+    final deviceLocale = WidgetsBinding.instance.window.locale.countryCode;
+
+    final focusedCountry = scrollToDeviceLocale
+        ? _validateIfCountryCodeIsSupported(deviceLocale)
+            ? deviceLocale
+            : null
+        : _validateIfCountryCodeIsSupported(initialSelectedLocale)
+            ? initialSelectedLocale
+            : null;
 
     final country = showModalBottomSheet<CountryCode?>(
       elevation: 0,
@@ -183,10 +191,18 @@ class FlCountryCodePicker {
         showFavoritesIcon: showFavoritesIcon,
         filteredCountries: filteredCountries,
         searchBarDecoration: searchBarDecoration,
-        focusedCountry: scrollToDeviceLocale ? locale : initialSelectedLocale,
+        focusedCountry: focusedCountry,
       ),
     );
 
     return country;
+  }
+
+  bool _validateIfCountryCodeIsSupported(String? code) {
+    if (code == null) return false;
+    final allCountryCodes = codes.map(CountryCode.fromMap).toList();
+    final index = allCountryCodes.indexWhere((c) => c.code == code);
+    if (index == -1) return false;
+    return true;
   }
 }

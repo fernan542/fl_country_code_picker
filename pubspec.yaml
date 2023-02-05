@@ -1,6 +1,6 @@
 name: fl_country_code_picker
 description: A Flutter package for showing a modal that contains country dial code. The user can also search for the available codes and select right from the modal.
-version: 0.1.0+3
+version: 0.1.1+3
 homepage: https://github.com/fernan542/fl_country_code_picker
 
 environment:
@@ -23,5 +23,73 @@ dev_dependencies:
 flutter:
   assets:
     - assets/flags/
+    - packages/fl_country_code_picker/i18n/af.json
+    - packages/fl_country_code_picker/i18n/am.json
+    - packages/fl_country_code_picker/i18n/ha.json
+    - packages/fl_country_code_picker/i18n/ku.json
+    - packages/fl_country_code_picker/i18n/ml.json
+    - packages/fl_country_code_picker/i18n/no.json
+    - packages/fl_country_code_picker/i18n/ps.json
+    - packages/fl_country_code_picker/i18n/sd.json
+    - packages/fl_country_code_picker/i18n/so.json
+    - packages/fl_country_code_picker/i18n/sq.json
+    - packages/fl_country_code_picker/i18n/ta.json
+    - packages/fl_country_code_picker/i18n/tg.json
+    - packages/fl_country_code_picker/i18n/tt.json
+    - packages/fl_country_code_picker/i18n/ug.json
+    - packages/fl_country_code_picker/i18n/ur.json
+    - packages/fl_country_code_picker/i18n/vi.json
+    - packages/fl_country_code_picker/i18n/ar.json
+    - packages/fl_country_code_picker/i18n/az.json
+    - packages/fl_country_code_picker/i18n/be.json
+    - packages/fl_country_code_picker/i18n/bg.json
+    - packages/fl_country_code_picker/i18n/bn.json
+    - packages/fl_country_code_picker/i18n/bs.json
+    - packages/fl_country_code_picker/i18n/ca.json
+    - packages/fl_country_code_picker/i18n/cs.json
+    - packages/fl_country_code_picker/i18n/da.json
+    - packages/fl_country_code_picker/i18n/de.json
+    - packages/fl_country_code_picker/i18n/el.json
     - packages/fl_country_code_picker/i18n/en.json
     - packages/fl_country_code_picker/i18n/es.json
+    - packages/fl_country_code_picker/i18n/et.json
+    - packages/fl_country_code_picker/i18n/fa.json
+    - packages/fl_country_code_picker/i18n/fi.json
+    - packages/fl_country_code_picker/i18n/fr.json
+    - packages/fl_country_code_picker/i18n/gl.json
+    - packages/fl_country_code_picker/i18n/el.json
+    - packages/fl_country_code_picker/i18n/he.json
+    - packages/fl_country_code_picker/i18n/hi.json
+    - packages/fl_country_code_picker/i18n/hr.json
+    - packages/fl_country_code_picker/i18n/hu.json
+    - packages/fl_country_code_picker/i18n/hy.json
+    - packages/fl_country_code_picker/i18n/id.json
+    - packages/fl_country_code_picker/i18n/is.json
+    - packages/fl_country_code_picker/i18n/it.json
+    - packages/fl_country_code_picker/i18n/ja.json
+    - packages/fl_country_code_picker/i18n/ka.json
+    - packages/fl_country_code_picker/i18n/kk.json
+    - packages/fl_country_code_picker/i18n/km.json
+    - packages/fl_country_code_picker/i18n/ko.json
+    - packages/fl_country_code_picker/i18n/ky.json
+    - packages/fl_country_code_picker/i18n/lt.json
+    - packages/fl_country_code_picker/i18n/lv.json
+    - packages/fl_country_code_picker/i18n/mk.json
+    - packages/fl_country_code_picker/i18n/mn.json
+    - packages/fl_country_code_picker/i18n/ms.json
+    - packages/fl_country_code_picker/i18n/nb.json
+    - packages/fl_country_code_picker/i18n/nl.json
+    - packages/fl_country_code_picker/i18n/nn.json
+    - packages/fl_country_code_picker/i18n/pl.json
+    - packages/fl_country_code_picker/i18n/pt.json
+    - packages/fl_country_code_picker/i18n/ro.json
+    - packages/fl_country_code_picker/i18n/ru.json
+    - packages/fl_country_code_picker/i18n/sk.json
+    - packages/fl_country_code_picker/i18n/sl.json
+    - packages/fl_country_code_picker/i18n/sr.json
+    - packages/fl_country_code_picker/i18n/sv.json
+    - packages/fl_country_code_picker/i18n/th.json
+    - packages/fl_country_code_picker/i18n/tr.json
+    - packages/fl_country_code_picker/i18n/uk.json
+    - packages/fl_country_code_picker/i18n/uz.json
+    - packages/fl_country_code_picker/i18n/zh.json
