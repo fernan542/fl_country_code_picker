@@ -34,4 +34,7 @@ Initial release
 
 ## 0.1.1
 - feat: add more support for internationalization
-- refactor: add validator for unsupported device's country/region. ([#8](https://github.com/fernan542/fl_country_code_picker/issues/8))
+- refactor: add validator for unsupported device's country/region ([#8](https://github.com/fernan542/fl_country_code_picker/issues/8))
+
+## 0.1.2
+- feat: add suuport for localized searching ([#10](https://github.com/fernan542/fl_country_code_picker/issues/10))
