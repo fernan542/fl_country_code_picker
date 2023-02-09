@@ -68,17 +68,23 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
   @override
   void initState() {
     super.initState();
+    itemScrollController = ItemScrollController();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _initCountries();
   }
 
   Future<void> _initCountries() async {
     final allCountryCodes = codes.map(CountryCode.fromMap).toList();
-    itemScrollController = ItemScrollController();
 
     final favoriteList = <CountryCode>[
       if (widget.favorites.isNotEmpty)
         ...allCountryCodes.where((c) => widget.favorites.contains(c.code))
     ];
+
     final filteredList = [
       ...widget.filteredCountries.isNotEmpty
           ? allCountryCodes.where(
@@ -90,7 +96,6 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
     baseList = [...favoriteList, ...filteredList];
     availableCountryCodes.addAll(baseList);
 
-    // Just to add a delay for itemScrollController initialization.
     await Future<void>.delayed(Duration.zero);
     if (!itemScrollController.isAttached) return;
 
@@ -122,12 +127,20 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
                 ..addAll(
                   List<CountryCode>.from(
                     baseList.where(
-                      (c) =>
-                          c.code.toLowerCase().contains(query.toLowerCase()) ||
-                          c.dialCode
-                              .toLowerCase()
-                              .contains(query.toLowerCase()) ||
-                          c.name.toLowerCase().contains(query.toLowerCase()),
+                      (c) {
+                        final country =
+                            widget.localize ? c.localize(context) : c;
+
+                        return country.code
+                                .toLowerCase()
+                                .contains(query.toLowerCase()) ||
+                            country.dialCode
+                                .toLowerCase()
+                                .contains(query.toLowerCase()) ||
+                            country.name
+                                .toLowerCase()
+                                .contains(query.toLowerCase());
+                      },
                     ),
                   ),
                 );

@@ -31,3 +31,7 @@ Initial release
 - feat: add visibility flag for favorite icon ([#5](https://github.com/fernan542/fl_country_code_picker/issues/5))
 - refactor: enable customization for modal's title ([#6](https://github.com/fernan542/fl_country_code_picker/issues/6))
 - refactor: add Kosovo country ([#5](https://github.com/fernan542/fl_country_code_picker/issues/5))
+
+## 0.1.1
+- feat: add more support for internationalization
+- refactor: add validator for unsupported device's country/region. ([#8](https://github.com/fernan542/fl_country_code_picker/issues/8))
