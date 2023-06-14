@@ -69,11 +69,6 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
   void initState() {
     super.initState();
     itemScrollController = ItemScrollController();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
     _initCountries();
   }
 
@@ -153,6 +148,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
             itemCount: availableCountryCodes.length,
             itemBuilder: (context, index) {
               final code = availableCountryCodes[index];
+
               final name =
                   widget.localize ? code.localize(context).name : code.name;
 

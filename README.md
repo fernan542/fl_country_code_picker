@@ -16,17 +16,15 @@ A Flutter package for showing a modal that contains country dial code. The user 
 ## 🔨 Installation
 ```yaml
 dependencies:
-    fl_country_code_picker: ^0.0.4
+    fl_country_code_picker: ^0.1.3
 ```
-### ⚙ Import
-```dart
-import  'package:fl_country_code_picker/fl_country_code_picker.dart';
-```
+
 ## 🕹️ Usage
 Instantiate `FlCountryCodePicker` class to access the package's functionalities and properties.
 You can also pass some optional parameters to customize the picker's view.
 ```dart
 final countryPicker = const  FlCountryCodePicker();
+
 final countryPickerWithParams = const FlCountryCodePicker(
       favorites: _yourFavorites,
       favoritesIcon: _yourIcon,
@@ -59,6 +57,24 @@ Call the modal for country code picker.
         ),
     ),
 ```
+To enable localization, add the following lines in your `MaterialApp`.
+```dart
+MaterialApp(
+	title: 'Your App',
+	// Supported locales at the moment.
+	// Cannot find your locale? Please make a request.
+	supportedLocales: flc.supportedLocales.map((e) => Locale(e)),
+	localizationsDelegates: const [
+		// Package's localization delegate.
+		CountryLocalizations.delegate,
+		GlobalWidgetsLocalizations.delegate,
+		GlobalMaterialLocalizations.delegate,
+		GlobalCupertinoLocalizations.delegate,
+	],
+	// ... some omitted values
+);
+```
+
 ----
 
 ### FlCountryCodePicker
@@ -135,31 +151,6 @@ First, Create your title `Widget`.
 Then pass it to `FlCountryCodePicker`'s title parameter.
 ```dart
 countryPicker = const  FlCountryCodePicker(title: title);
-```
-
- * **How to enable package's supported localization?**
-
-First, import the package and add an alias to prevent other import errors.
-```dart
-import  'package:fl_country_code_picker/fl_country_code_picker.dart' as flc;
-```
-
-Add the following values at your app's `MaterialApp`
-```dart
-MaterialApp(
-	title: 'Your App',
-	// Supported locales at the moment.
-	// Cannot find your locale? Please make a request.
-	supportedLocales: flc.supportedLocales.map((e) => Locale(e)),
-	localizationsDelegates: const [
-		// Package's localization delegate.
-		CountryLocalizations.delegate,
-		GlobalWidgetsLocalizations.delegate,
-		GlobalMaterialLocalizations.delegate,
-		GlobalCupertinoLocalizations.delegate,
-	],
-	// ... some omitted values
-);
 ```
 
 ## 🐞 Bugs/Requests

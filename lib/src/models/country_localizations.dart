@@ -94,11 +94,11 @@ class CountryLocalizations {
   final Locale locale;
 
   /// Reference for lookup objects that contain collections of localized values.
-  static CountryLocalizations of(BuildContext context) {
+  static CountryLocalizations? of(BuildContext context) {
     return Localizations.of<CountryLocalizations>(
       context,
       CountryLocalizations,
-    )!;
+    );
   }
 
   /// Delegate to access defined localized resources from this package.

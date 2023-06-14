@@ -38,3 +38,8 @@ Initial release
 
 ## 0.1.2
 - feat: add suuport for localized searching ([#10](https://github.com/fernan542/fl_country_code_picker/issues/10))
+
+## 0.1.3
+- fix: uses initState instead of didChangeDependencies for initialization of countries ([#16](https://github.com/fernan542/fl_country_code_picker/issues/16))
+- refactor: makes the localization optional to prevent null error
+- upgrade dependency to `scrollable_positioned_list v0.3.8`

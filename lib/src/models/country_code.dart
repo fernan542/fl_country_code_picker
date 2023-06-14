@@ -58,7 +58,7 @@ class CountryCode {
 
   /// Convenient getter for localized version of this country code.
   CountryCode localize(BuildContext context) => copyWith(
-        name: CountryLocalizations.of(context).translation(code),
+        name: CountryLocalizations.of(context)?.translation(code),
       );
 
   /// Uri of this [CountryCode] located at package's directory to supply
