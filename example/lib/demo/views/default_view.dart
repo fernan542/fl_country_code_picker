@@ -22,15 +22,9 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
       countryTextStyle: TextStyle(
         color: Colors.red,
         fontSize: 16,
-      )
-      dialCodeTextStyle: TextStyle(color: Colors.green, fontSize: 16)
+      ),
+      dialCodeTextStyle: TextStyle(color: Colors.green, fontSize: 16),
     );
-  }
-
-  @override
-  void dispose() {
-    countryTextController.dispose();
-    super.dispose();
   }
 
   @override
@@ -102,33 +96,35 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
           ),
         ),
         kSpacer,
-        Builder(builder: (context) {
-          final _fieldWidth = MediaQuery.of(context).size.width * 0.6;
-          final _spacerWidth = MediaQuery.of(context).size.width * 0.1;
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final fieldWidth = constraints.maxWidth * 0.6;
+            final spacerWidth = constraints.maxWidth * 0.1;
 
-          return Row(
-            children: [
-              SizedBox(
-                width: _fieldWidth,
-                child: TextFormField(
-                  textInputAction: TextInputAction.done,
-                  keyboardType: TextInputType.number,
-                  maxLines: 1,
-                  enabled: false,
-                  controller: countryTextController,
-                  decoration: const InputDecoration(
-                    labelText: 'Country',
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: kFieldBorder,
+            return Row(
+              children: [
+                SizedBox(
+                  width: fieldWidth,
+                  child: TextFormField(
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.number,
+                    maxLines: 1,
+                    enabled: false,
+                    controller: countryTextController,
+                    decoration: const InputDecoration(
+                      labelText: 'Country',
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: kFieldBorder,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(width: _spacerWidth),
-              if (countryCode != null) countryCode!.flagImage()
-            ],
-          );
-        }),
+                SizedBox(width: spacerWidth),
+                if (countryCode != null) countryCode!.flagImage()
+              ],
+            );
+          },
+        ),
         kSpacer,
         if (countryCode != null) const Text('Custom Image widget: '),
         kSpacer,
@@ -141,5 +137,11 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
           ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    countryTextController.dispose();
+    super.dispose();
   }
 }
