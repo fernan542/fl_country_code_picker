@@ -13,6 +13,7 @@ class CcpDefaultListItemTrailing extends StatelessWidget {
     required this.favorites,
     required this.showDialCode,
     required this.showFavoritesIcon,
+    this.dialCodeTextStyle,
   }) : super(key: key);
 
   /// {@macro code}
@@ -30,6 +31,9 @@ class CcpDefaultListItemTrailing extends StatelessWidget {
   /// {@macro show_favorites_icon}
   final bool showFavoritesIcon;
 
+  /// {@macro dial_code_text_style}
+  final TextStyle? dialCodeTextStyle;
+
   @override
   Widget build(BuildContext context) {
     if (favorites.isNotEmpty) {
@@ -41,14 +45,20 @@ class CcpDefaultListItemTrailing extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (showDialCode) Text(code.dialCode) else const SizedBox(),
+            if (showDialCode) Text(
+                code.dialCode,
+              style: dialCodeTextStyle,
+            ) else const SizedBox(),
             if (showFavoritesIcon)
               if (index != -1) icon,
           ],
         ),
       );
     } else {
-      return showDialCode ? Text(code.dialCode) : const SizedBox();
+      return showDialCode ? Text(
+        code.dialCode,
+        style: dialCodeTextStyle,
+      ) : const SizedBox();
     }
   }
 }
