@@ -10,7 +10,7 @@ void main() {
   });
 
   group('FlCountryCodePicker', () {
-    test('can be instantiated', () async {
+    test('can be instantiated', () {
       expect(picker, isNotNull);
     });
 

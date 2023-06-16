@@ -130,11 +130,11 @@ class CountryCode {
 class CountryCodeFlagWidget extends StatelessWidget {
   /// {@macro country_code_flag}
   const CountryCodeFlagWidget({
-    Key? key,
-    this.fit,
     required this.width,
     required this.alignment,
     required this.countryCode,
+    Key? key,
+    this.fit,
   }) : super(key: key);
 
   /// The associated [CountryCode] for display.

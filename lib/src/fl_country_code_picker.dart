@@ -1,29 +1,6 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
+import 'package:fl_country_code_picker/src/constants.dart';
 import 'package:flutter/material.dart';
-
-// /// Signature for a function that creates a widget for a country
-// /// code picker modal.
-// typedef ModalTitleBuilder = Widget Function();
-
-/// Default favorites icon.
-const _kFavoritesIcon = Icon(Icons.favorite, color: Colors.red);
-
-/// Default modal and TextField default borderRadius.
-const kBorderRadius = Radius.circular(10);
-
-/// Default modal background color.
-const _kBackgroundColor = Color(0xFFFFFFFF);
-
-/// Default modal barrier color.
-const _kBarrierColor = Color(0x50000000);
-
-/// Default modal shape.
-const _kShape = RoundedRectangleBorder(
-  borderRadius: BorderRadius.only(
-    topLeft: kBorderRadius,
-    topRight: kBorderRadius,
-  ),
-);
 
 /// {@template fl_country_code_picker}
 /// A Flutter package for showing a modal that contains country dial code.
@@ -42,7 +19,7 @@ class FlCountryCodePicker {
     this.showFavoritesIcon = true,
     this.favorites = const [],
     this.filteredCountries = const [],
-    this.favoritesIcon = _kFavoritesIcon,
+    this.favoritesIcon = kFavoritesIcon,
     this.countryTextStyle,
     this.dialCodeTextStyle,
   });
@@ -129,7 +106,7 @@ class FlCountryCodePicker {
   /// Can be used to customize the style of the country name.
   /// {@endtemplate}
   final TextStyle? countryTextStyle;
-  
+
   /// {@template dial_code_text_style}
   /// Can be used to customize the appearance of the phone code eg: +1
   /// {@endtemplate}
@@ -151,14 +128,14 @@ class FlCountryCodePicker {
   Future<CountryCode?> showPicker({
     required BuildContext context,
     bool fullScreen = false,
+    ShapeBorder shape = kShape,
     double pickerMinHeight = 150,
     double pickerMaxHeight = 500,
-    bool scrollToDeviceLocale = false,
     String? initialSelectedLocale,
-    ShapeBorder shape = _kShape,
-    Color backgroundColor = _kBackgroundColor,
-    Color barrierColor = _kBarrierColor,
+    bool scrollToDeviceLocale = false,
+    Color barrierColor = kBarrierColor,
     Clip? clipBehavior = Clip.hardEdge,
+    Color backgroundColor = kBackgroundColor,
   }) async {
     final fullScreenHeight = MediaQuery.of(context).size.height;
     final allowance = MediaQuery.of(context).padding.top -

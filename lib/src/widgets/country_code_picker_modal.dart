@@ -13,7 +13,6 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 class CountryCodePickerModal extends StatefulWidget {
   /// {@macro country_code_picker_modal}
   const CountryCodePickerModal({
-    Key? key,
     required this.localize,
     required this.favoritesIcon,
     required this.showSearchBar,
@@ -26,6 +25,7 @@ class CountryCodePickerModal extends StatefulWidget {
     this.filteredCountries = const [],
     this.countryTextStyle,
     this.dialCodeTextStyle,
+    Key? key,
   }) : super(key: key);
 
   /// {@macro favorites}
@@ -60,7 +60,7 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// {@macro country_text_style}
   final TextStyle? countryTextStyle;
-  
+
   /// {@macro dial_code_text_style}
   final TextStyle? dialCodeTextStyle;
 

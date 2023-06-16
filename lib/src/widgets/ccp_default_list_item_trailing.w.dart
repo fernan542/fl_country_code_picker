@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 class CcpDefaultListItemTrailing extends StatelessWidget {
   /// {@macro ccp_default_list_item_trailing}
   const CcpDefaultListItemTrailing({
-    Key? key,
     required this.icon,
     required this.code,
     required this.favorites,
     required this.showDialCode,
     required this.showFavoritesIcon,
+    Key? key,
     this.dialCodeTextStyle,
   }) : super(key: key);
 

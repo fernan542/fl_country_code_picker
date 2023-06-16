@@ -1,22 +1,5 @@
-import 'package:fl_country_code_picker/src/fl_country_code_picker.dart';
+import 'package:fl_country_code_picker/src/constants.dart';
 import 'package:flutter/material.dart';
-
-/// Default search bar input decoration.
-const _kInputDecoration = InputDecoration(
-  hintText: "'Country', 'Code' or 'Dial Code'",
-  hintStyle: TextStyle(fontSize: 12),
-  suffixIcon: Icon(Icons.search),
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(kBorderRadius),
-    borderSide: BorderSide(
-      width: 2,
-      style: BorderStyle.none,
-    ),
-  ),
-  filled: true,
-  contentPadding: EdgeInsets.symmetric(horizontal: 16),
-  fillColor: Colors.white,
-);
 
 /// {@template ccp_default_search_bar}
 /// The default modal search bar widget that can be customized by supplying
@@ -42,7 +25,7 @@ class CcpDefaultSearchBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextField(
         onChanged: onChanged,
-        decoration: decoration ?? _kInputDecoration,
+        decoration: decoration ?? kInputDecoration,
         keyboardType: TextInputType.text,
       ),
     );
