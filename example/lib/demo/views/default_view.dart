@@ -23,6 +23,7 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
         color: Colors.red,
         fontSize: 16,
       )
+      dialCodeTextStyle: TextStyle(color: Colors.green, fontSize: 16)
     );
   }
 

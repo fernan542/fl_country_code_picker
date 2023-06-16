@@ -25,6 +25,7 @@ class CountryCodePickerModal extends StatefulWidget {
     this.favorites = const [],
     this.filteredCountries = const [],
     this.countryTextStyle,
+    this.dialCodeTextStyle,
   }) : super(key: key);
 
   /// {@macro favorites}
@@ -59,6 +60,9 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// {@macro country_text_style}
   final TextStyle? countryTextStyle;
+  
+  /// {@macro dial_code_text_style}
+  final TextStyle? dialCodeTextStyle;
 
   @override
   State<CountryCodePickerModal> createState() => _CountryCodePickerModalState();
@@ -169,6 +173,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
                   favorites: widget.favorites,
                   showDialCode: widget.showDialCode,
                   showFavoritesIcon: widget.showFavoritesIcon,
+                  dialCodeTextStyle: widget.dialCodeTextStyle,
                 ),
               );
             },
