@@ -43,6 +43,7 @@ class FlCountryCodePicker {
     this.favorites = const [],
     this.filteredCountries = const [],
     this.favoritesIcon = _kFavoritesIcon,
+    this.countryTextStyle,
     this.dialCodeTextStyle,
   });
 
@@ -124,6 +125,11 @@ class FlCountryCodePicker {
   /// {@endtemplate}
   final bool localize;
 
+  /// {@template country_text_style}
+  /// Can be used to customize the style of the country name.
+  /// {@endtemplate}
+  final TextStyle? countryTextStyle;
+  
   /// {@template dial_code_text_style}
   /// Can be used to customize the appearance of the phone code eg: +1
   /// {@endtemplate}
@@ -198,6 +204,7 @@ class FlCountryCodePicker {
         filteredCountries: filteredCountries,
         searchBarDecoration: searchBarDecoration,
         focusedCountry: focusedCountry,
+        countryTextStyle: countryTextStyle,
         dialCodeTextStyle: dialCodeTextStyle,
       ),
     );

@@ -19,6 +19,10 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
   void initState() {
     super.initState();
     countryPicker = const FlCountryCodePicker(
+      countryTextStyle: TextStyle(
+        color: Colors.red,
+        fontSize: 16,
+      )
       dialCodeTextStyle: TextStyle(color: Colors.green, fontSize: 16)
     );
   }
