@@ -18,7 +18,12 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
   @override
   void initState() {
     super.initState();
-    countryPicker = const FlCountryCodePicker();
+    countryPicker = const FlCountryCodePicker(
+      countryTextStyle: TextStyle(
+        color: Colors.red,
+        fontSize: 16,
+      )
+    );
   }
 
   @override
