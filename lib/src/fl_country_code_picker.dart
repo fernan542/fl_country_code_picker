@@ -43,6 +43,7 @@ class FlCountryCodePicker {
     this.favorites = const [],
     this.filteredCountries = const [],
     this.favoritesIcon = _kFavoritesIcon,
+    this.dialCodeTextStyle,
   });
 
   /// Convinience getter for all of the available country codes.
@@ -123,6 +124,11 @@ class FlCountryCodePicker {
   /// {@endtemplate}
   final bool localize;
 
+  /// {@template dial_code_text_style}
+  /// Can be used to customize the appearance of the phone code eg: +1
+  /// {@endtemplate}
+  final TextStyle? dialCodeTextStyle;
+
   /// Shows the [CountryCodePickerModal] modal.
   ///
   /// Parameters:
@@ -192,6 +198,7 @@ class FlCountryCodePicker {
         filteredCountries: filteredCountries,
         searchBarDecoration: searchBarDecoration,
         focusedCountry: focusedCountry,
+        dialCodeTextStyle: dialCodeTextStyle,
       ),
     );
 
