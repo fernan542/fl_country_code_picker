@@ -24,6 +24,7 @@ class CountryCodePickerModal extends StatefulWidget {
     this.searchBarDecoration,
     this.favorites = const [],
     this.filteredCountries = const [],
+    this.countryTextStyle,
   }) : super(key: key);
 
   /// {@macro favorites}
@@ -55,6 +56,9 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// {@macro localize}
   final bool localize;
+
+  /// {@macro country_text_style}
+  final TextStyle? countryTextStyle;
 
   @override
   State<CountryCodePickerModal> createState() => _CountryCodePickerModalState();
@@ -155,7 +159,10 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
               return ListTile(
                 onTap: () => Navigator.pop(context, code),
                 leading: code.flagImage(),
-                title: Text(name),
+                title: Text(
+                  name,
+                  style: widget.countryTextStyle,
+                ),
                 trailing: CcpDefaultListItemTrailing(
                   code: code,
                   icon: widget.favoritesIcon,
