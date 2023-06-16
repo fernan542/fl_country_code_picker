@@ -38,27 +38,28 @@ class CcpDefaultListItemTrailing extends StatelessWidget {
   Widget build(BuildContext context) {
     if (favorites.isNotEmpty) {
       final index = favorites.indexWhere((f) => f == code.code);
-      final iconWidth = MediaQuery.of(context).size.width * 0.2;
 
-      return SizedBox(
-        width: iconWidth,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            if (showDialCode) Text(
-                code.dialCode,
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          if (showDialCode)
+            Text(
+              code.dialCode,
               style: dialCodeTextStyle,
-            ) else const SizedBox(),
-            if (showFavoritesIcon)
-              if (index != -1) icon,
-          ],
-        ),
+            )
+          else
+            const SizedBox(),
+          if (showFavoritesIcon)
+            if (index != -1) icon,
+        ],
       );
     } else {
-      return showDialCode ? Text(
-        code.dialCode,
-        style: dialCodeTextStyle,
-      ) : const SizedBox();
+      return showDialCode
+          ? Text(
+              code.dialCode,
+              style: dialCodeTextStyle,
+            )
+          : const SizedBox();
     }
   }
 }
