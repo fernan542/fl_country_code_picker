@@ -80,18 +80,20 @@ MaterialApp(
 ### FlCountryCodePicker
 **`FlCountryCodePicker`** class contains all of the functionalities of this package. This contains (optional) properties that can be supply to achieve customization at picker's view or appearance.
 
-|Fields|Type|Description|
-|:---:|:---:|:---|
-| **favorites** | `List<String>?` | Favorite countries that can be shown at the top of the list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
-| **favoritesIcon** | `Icon` | Custom icon of favorite countries. Defaults to ❤️. |
+|Fields|Type| Description                                                                                                                                                                         |
+|:---:|:---:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **favorites** | `List<String>?` | Favorite countries that can be shown at the top of the list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']`                                        |
+| **favoritesIcon** | `Icon` | Custom icon of favorite countries. Defaults to ❤️.                                                                                                                                  |
 | **filteredCountries** | `List<String>?` | Filters all of the [CountryCode]s available and only show the codes that are existing in this list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
-| **localize** | `bool` | An optional argument for localizing the country names based on device's current selected Language (country/region). Defaults to `true`. |
-| **searchBarDecoration** | `InputDecoration?` | An optional argument for appearance customization of modal's search bar. |
-| **showDialCode** | `bool` | An optional argument for showing dial code at country tiles. Defaults to `true`. |
-| **showFavoritesIcon** | `bool` | An optional argument for showing favorites icon. Defaults to `true`. |
-| **showSearchBar** | `bool` | An optional argument for showing search bar. Defaults to `true`. |
-| **showDialCode** | `bool` | An optional argument for showing dial code at country tiles. Defaults to `true`. |
-| **title** | `Widget?` | An optional argument for modal's title customization. |
+| **localize** | `bool` | An optional argument for localizing the country names based on device's current selected Language (country/region). Defaults to `true`.                                             |
+| **searchBarDecoration** | `InputDecoration?` | An optional argument for appearance customization of modal's search bar.                                                                                                            |
+| **showDialCode** | `bool` | An optional argument for showing dial code at country tiles. Defaults to `true`.                                                                                                    |
+| **showFavoritesIcon** | `bool` | An optional argument for showing favorites icon. Defaults to `true`.                                                                                                                |
+| **showSearchBar** | `bool` | An optional argument for showing search bar. Defaults to `true`.                                                                                                                    |
+| **showDialCode** | `bool` | An optional argument for showing dial code at country tiles. Defaults to `true`.                                                                                                    |
+| **title** | `Widget?` | An optional argument for modal's title customization.                                                                                                                               |
+| **countryTextStyle** | `TextStyle?` | An optional argument for country name text customization.                                                                                                                           |
+| **dialCodeTextStyle** | `TextStyle?` | An optional argument for phone code text customization.                                                                                                                             |
 
 ----
 
