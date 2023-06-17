@@ -16,25 +16,29 @@ A Flutter package for showing a modal that contains country dial code. The user 
 ## 🔨 Installation
 ```yaml
 dependencies:
-    fl_country_code_picker: ^0.1.3
+    fl_country_code_picker: ^0.1.4
 ```
 
 ## 🕹️ Usage
 Instantiate `FlCountryCodePicker` class to access the package's functionalities and properties.
 You can also pass some optional parameters to customize the picker's view.
 ```dart
+/// Default.
 final countryPicker = const  FlCountryCodePicker();
 
+/// With custom params.
 final countryPickerWithParams = const FlCountryCodePicker(
-      favorites: _yourFavorites,
-      favoritesIcon: _yourIcon,
-      filteredCountries: _yourFilters,
       localize: true,
-      searchBarDecoration: _yourInputDecoration,
       showDialCode: true,
-      showFavoritesIcon: true,
       showSearchBar: true,
+      showFavoritesIcon: true,
+      favoritesIcon: _yourIcon,
+      favorites: _yourFavorites,
       title: _yourModalTitleWidget,
+      filteredCountries: _yourFilters,
+      countryTextStyle: _yourCountryTextStyle,
+      dialCodeTextStyle: _yourdialCodeTextStyle,
+      searchBarDecoration: _yourInputDecoration,
     );
 ```
 Call the modal for country code picker.
