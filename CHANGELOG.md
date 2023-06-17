@@ -42,4 +42,9 @@ Initial release
 ## 0.1.3
 - fix: uses initState instead of didChangeDependencies for initialization of countries ([#16](https://github.com/fernan542/fl_country_code_picker/issues/16))
 - refactor: makes the localization optional to prevent null error
-- upgrade dependency to `scrollable_positioned_list v0.3.8`
+- chore: upgrade dependency to `scrollable_positioned_list v0.3.8`
+
+## 0.1.4
+- feat: expose custom country name text style ([#17](https://github.com/fernan542/fl_country_code_picker/pull/17))
+- feat: expose custom dial code text style ([#18](https://github.com/fernan542/fl_country_code_picker/pull/18))
+- chore: upgrade dependency to `very_good_analysis v4.0.0`
