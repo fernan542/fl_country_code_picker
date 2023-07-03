@@ -22,6 +22,7 @@ class FlCountryCodePicker {
     this.favoritesIcon = kFavoritesIcon,
     this.countryTextStyle,
     this.dialCodeTextStyle,
+    this.horizontalTitleGap
   });
 
   /// Convinience getter for all of the available country codes.
@@ -78,6 +79,8 @@ class FlCountryCodePicker {
   /// Defaults to `true`.
   /// {@endtemplate}
   final bool showDialCode;
+
+  final double? horizontalTitleGap;
 
   /// {@template item_builder}
   ///
@@ -174,6 +177,7 @@ class FlCountryCodePicker {
         title: title,
         localize: localize,
         favorites: favorites,
+        horizontalTitleGap: horizontalTitleGap,
         showDialCode: showDialCode,
         favoritesIcon: favoritesIcon,
         showSearchBar: showSearchBar,
