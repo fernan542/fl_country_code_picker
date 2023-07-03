@@ -19,6 +19,7 @@ class CountryCodePickerModal extends StatefulWidget {
     required this.showDialCode,
     required this.showFavoritesIcon,
     this.title,
+    this.horizontalTitleGap,
     this.focusedCountry,
     this.searchBarDecoration,
     this.favorites = const [],
@@ -42,6 +43,8 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// {@macro show_favorites_icon}
   final bool showFavoritesIcon;
+
+  final double? horizontalTitleGap;
 
   /// {@macro show_dial_code}
   final bool showDialCode;
@@ -163,6 +166,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
               return ListTile(
                 onTap: () => Navigator.pop(context, code),
                 leading: code.flagImage(),
+                horizontalTitleGap: widget.horizontalTitleGap?? 40,
                 title: Text(
                   name,
                   style: widget.countryTextStyle,
