@@ -48,3 +48,7 @@ Initial release
 - feat: expose custom country name text style ([#17](https://github.com/fernan542/fl_country_code_picker/pull/17))
 - feat: expose custom dial code text style ([#18](https://github.com/fernan542/fl_country_code_picker/pull/18))
 - chore: upgrade dependency to `very_good_analysis v4.0.0`
+
+## 0.1.5
+- fix: reverts icon width for tile size ([#21](https://github.com/fernan542/fl_country_code_picker/issues/21))
+- feat: remove `showFavoritesIcon` and change `favoritesIcon`'s type to nullable
