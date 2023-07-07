@@ -11,7 +11,6 @@ class CcpDefaultListItemTrailing extends StatelessWidget {
     required this.code,
     required this.favorites,
     required this.showDialCode,
-    required this.showFavoritesIcon,
     Key? key,
     this.dialCodeTextStyle,
   }) : super(key: key);
@@ -23,13 +22,10 @@ class CcpDefaultListItemTrailing extends StatelessWidget {
   final List<String> favorites;
 
   /// {@macro favorites_icon}
-  final Icon icon;
+  final Icon? icon;
 
   /// {@macro show_dial_code}
   final bool showDialCode;
-
-  /// {@macro show_favorites_icon}
-  final bool showFavoritesIcon;
 
   /// {@macro dial_code_text_style}
   final TextStyle? dialCodeTextStyle;
@@ -38,20 +34,24 @@ class CcpDefaultListItemTrailing extends StatelessWidget {
   Widget build(BuildContext context) {
     if (favorites.isNotEmpty) {
       final index = favorites.indexWhere((f) => f == code.code);
+      final iconWidth = MediaQuery.of(context).size.width * 0.2;
 
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          if (showDialCode)
-            Text(
-              code.dialCode,
-              style: dialCodeTextStyle,
-            )
-          else
-            const SizedBox(),
-          if (showFavoritesIcon)
-            if (index != -1) icon,
-        ],
+      return SizedBox(
+        width: iconWidth,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            if (showDialCode)
+              Text(
+                code.dialCode,
+                style: dialCodeTextStyle,
+              )
+            else
+              const SizedBox(),
+            if (icon != null)
+              if (index != -1) icon!,
+          ],
+        ),
       );
     } else {
       return showDialCode

@@ -31,7 +31,6 @@ final countryPickerWithParams = const FlCountryCodePicker(
       localize: true,
       showDialCode: true,
       showSearchBar: true,
-      showFavoritesIcon: true,
       favoritesIcon: _yourIcon,
       favorites: _yourFavorites,
       title: _yourModalTitleWidget,
@@ -91,8 +90,7 @@ MaterialApp(
 | **filteredCountries** | `List<String>?` | Filters all of the [CountryCode]s available and only show the codes that are existing in this list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
 | **localize** | `bool` | An optional argument for localizing the country names based on device's current selected Language (country/region). Defaults to `true`.                                             |
 | **searchBarDecoration** | `InputDecoration?` | An optional argument for appearance customization of modal's search bar.                                                                                                            |
-| **showDialCode** | `bool` | An optional argument for showing dial code at country tiles. Defaults to `true`.                                                                                                    |
-| **showFavoritesIcon** | `bool` | An optional argument for showing favorites icon. Defaults to `true`.                                                                                                                |
+| **showDialCode** | `bool` | An optional argument for showing dial code at country tiles. Defaults to `true`.                                                                                                    |                                                                                                               
 | **showSearchBar** | `bool` | An optional argument for showing search bar. Defaults to `true`.                                                                                                                    |
 | **showDialCode** | `bool` | An optional argument for showing dial code at country tiles. Defaults to `true`.                                                                                                    |
 | **title** | `Widget?` | An optional argument for modal's title customization.                                                                                                                               |

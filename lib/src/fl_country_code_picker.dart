@@ -16,12 +16,18 @@ class FlCountryCodePicker {
     this.searchBarDecoration,
     this.showDialCode = true,
     this.showSearchBar = true,
-    this.showFavoritesIcon = true,
     this.favorites = const [],
     this.filteredCountries = const [],
-    this.favoritesIcon = kFavoritesIcon,
+    this.favoritesIcon,
     this.countryTextStyle,
     this.dialCodeTextStyle,
+    @Deprecated(
+      'This property will be removed because it is '
+      'unnecessary after making the [favoritesIcon] nullable. '
+      'If you want to show favorites icon, just supply the '
+      'value for [favoritesIcon].',
+    )
+        this.showFavoritesIcon = false,
   });
 
   /// Convinience getter for all of the available country codes.
@@ -56,13 +62,19 @@ class FlCountryCodePicker {
   ///
   /// <i class="material-icons md-36">favorite</i> &#x2014;  Defaults to `Icons.favorite`
   /// {@endtemplate}
-  final Icon favoritesIcon;
+  final Icon? favoritesIcon;
 
   /// {@template show_favorites_icon}
   /// An optional argument for showing favorites icon.
   ///
   /// Defaults to `true`.
   /// {@endtemplate}
+  @Deprecated(
+    'This property will be removed because it is '
+    'unnecessary after making the [favoritesIcon] nullable. '
+    'If you want to show favorites icon, just supply the '
+    'value for [favoritesIcon].',
+  )
   final bool showFavoritesIcon;
 
   /// {@template show_search_bar}
@@ -177,7 +189,6 @@ class FlCountryCodePicker {
         showDialCode: showDialCode,
         favoritesIcon: favoritesIcon,
         showSearchBar: showSearchBar,
-        showFavoritesIcon: showFavoritesIcon,
         filteredCountries: filteredCountries,
         searchBarDecoration: searchBarDecoration,
         focusedCountry: focusedCountry,
