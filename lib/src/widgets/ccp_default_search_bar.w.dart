@@ -11,6 +11,7 @@ class CcpDefaultSearchBar extends StatelessWidget {
     Key? key,
     this.onChanged,
     this.decoration,
+    this.style
   }) : super(key: key);
 
   /// Callback function on query changed.
@@ -18,6 +19,9 @@ class CcpDefaultSearchBar extends StatelessWidget {
 
   /// {@macro search_bar_decoration}
   final InputDecoration? decoration;
+
+  /// {@macro search_bar_style}
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +31,7 @@ class CcpDefaultSearchBar extends StatelessWidget {
         onChanged: onChanged,
         decoration: decoration ?? kInputDecoration,
         keyboardType: TextInputType.text,
+        style: style,
       ),
     );
   }

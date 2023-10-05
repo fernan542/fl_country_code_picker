@@ -20,6 +20,7 @@ class FlCountryCodePicker {
     this.filteredCountries = const [],
     this.favoritesIcon,
     this.countryTextStyle,
+    this.searchBarStyle,
     this.dialCodeTextStyle,
     @Deprecated(
       'This property will be removed because it is '
@@ -27,7 +28,7 @@ class FlCountryCodePicker {
       'If you want to show favorites icon, just supply the '
       'value for [favoritesIcon].',
     )
-        this.showFavoritesIcon = false,
+    this.showFavoritesIcon = false,
   });
 
   /// Convinience getter for all of the available country codes.
@@ -105,6 +106,11 @@ class FlCountryCodePicker {
   /// Can be used to customize the appearance of search bar.
   /// {@endtemplate}
   final InputDecoration? searchBarDecoration;
+
+  /// {@template search_bar_style}
+  /// Can be used to customize the Style of search bar.
+  /// {@endtemplate}
+  final TextStyle? searchBarStyle;
 
   /// {@template localize}
   /// An optional argument for localizing the country names based on
@@ -194,6 +200,7 @@ class FlCountryCodePicker {
         focusedCountry: focusedCountry,
         countryTextStyle: countryTextStyle,
         dialCodeTextStyle: dialCodeTextStyle,
+        searchBarStyle: searchBarStyle,
       ),
     );
 

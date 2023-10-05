@@ -24,6 +24,7 @@ class CountryCodePickerModal extends StatefulWidget {
     this.filteredCountries = const [],
     this.countryTextStyle,
     this.dialCodeTextStyle,
+    this.searchBarStyle,
     Key? key,
   }) : super(key: key);
 
@@ -50,6 +51,9 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// {@macro search_bar_decoration}
   final InputDecoration? searchBarDecoration;
+
+  /// {@macro search_bar_style}
+  final TextStyle? searchBarStyle;
 
   /// {@macro localize}
   final bool localize;
@@ -119,6 +123,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
         widget.title ?? const CcpDefaultModalTitle(),
         if (widget.showSearchBar)
           CcpDefaultSearchBar(
+            style: widget.searchBarStyle,
             decoration: widget.searchBarDecoration,
             onChanged: (query) {
               availableCountryCodes
