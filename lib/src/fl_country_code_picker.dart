@@ -13,6 +13,7 @@ class FlCountryCodePicker {
   const FlCountryCodePicker({
     this.title,
     this.localize = true,
+    this.horizontalTitleGap,
     this.searchBarDecoration,
     this.showDialCode = true,
     this.showSearchBar = true,
@@ -27,7 +28,7 @@ class FlCountryCodePicker {
       'If you want to show favorites icon, just supply the '
       'value for [favoritesIcon].',
     )
-        this.showFavoritesIcon = false,
+    this.showFavoritesIcon = false,
   });
 
   /// Convinience getter for all of the available country codes.
@@ -69,6 +70,10 @@ class FlCountryCodePicker {
   ///
   /// Defaults to `true`.
   /// {@endtemplate}
+
+  final double? horizontalTitleGap;
+
+  /// space between flag and country name
   @Deprecated(
     'This property will be removed because it is '
     'unnecessary after making the [favoritesIcon] nullable. '
@@ -188,6 +193,7 @@ class FlCountryCodePicker {
         favorites: favorites,
         showDialCode: showDialCode,
         favoritesIcon: favoritesIcon,
+        horizontalTitleGap: horizontalTitleGap,
         showSearchBar: showSearchBar,
         filteredCountries: filteredCountries,
         searchBarDecoration: searchBarDecoration,
