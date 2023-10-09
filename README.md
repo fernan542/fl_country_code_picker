@@ -13,12 +13,6 @@ A Flutter package for showing a modal that contains country dial code. The user 
 <img  src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/default-view.gif?raw=true"  width="200"/> <img  src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-favorites.gif?raw=true"  width="200"/> <img  src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-filter.gif?raw=true"  width="200"/>
 <img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-favorite-and-filter.gif?raw=true"  width="200"/>
 
-## 🔨 Installation
-```yaml
-dependencies:
-    fl_country_code_picker: ^0.1.4
-```
-
 ## 🕹️ Usage
 Instantiate `FlCountryCodePicker` class to access the package's functionalities and properties.
 You can also pass some optional parameters to customize the picker's view.
@@ -80,53 +74,6 @@ MaterialApp(
 
 ----
 
-### FlCountryCodePicker
-**`FlCountryCodePicker`** class contains all of the functionalities of this package. This contains (optional) properties that can be supply to achieve customization at picker's view or appearance.
-
-|Fields|Type| Description                                                                                                                                                                         |
-|:---:|:---:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **favorites** | `List<String>?` | Favorite countries that can be shown at the top of the list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']`                                        |
-| **favoritesIcon** | `Icon` | Custom icon of favorite countries. Defaults to ❤️.                                                                                                                                  |
-| **filteredCountries** | `List<String>?` | Filters all of the [CountryCode]s available and only show the codes that are existing in this list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']` |
-| **localize** | `bool` | An optional argument for localizing the country names based on device's current selected Language (country/region). Defaults to `true`.                                             |
-| **searchBarDecoration** | `InputDecoration?` | An optional argument for appearance customization of modal's search bar.                                                                                                            |
-| **showDialCode** | `bool` | An optional argument for showing dial code at country tiles. Defaults to `true`.                                                                                                    |                                                                                                               
-| **showSearchBar** | `bool` | An optional argument for showing search bar. Defaults to `true`.                                                                                                                    |
-| **showDialCode** | `bool` | An optional argument for showing dial code at country tiles. Defaults to `true`.                                                                                                    |
-| **title** | `Widget?` | An optional argument for modal's title customization.                                                                                                                               |
-| **countryTextStyle** | `TextStyle?` | An optional argument for country name text customization.                                                                                                                           |
-| **dialCodeTextStyle** | `TextStyle?` | An optional argument for phone code text customization.                                                                                                                             |
-
-----
-
-### showPicker
-**`showPicker`** method under the `FlCountryCodePicker` class that can be used to show the country code picker.
-
-|Fields|Type|Description|
-|:---:|:---:|:---:|
-| **context** | `BuildContext` | A handle to the location of a widget in the widget tree. `Required`.|
-| **isFullScreen** | `bool` | Shows the modal in full screen mode. Defaults to `false`. |
-| **pickerMinHeight** | `double` | Picker modal constraints for minimum height. Defaults to `150`. |
-| **pickerMaxHeight** | `double` | Picker modal constraints for maximum height. Defaults to `500`. |
-| **scrollToDeviceLocale** | `bool` | Property to automatically scroll at device's locale within the picker. Defaults to `false`. |
-| **initialSelectedLocale** | `String?` | The 2 character ISO code of the country where the scrollController will automatically scroll to. |
-
-----
-
-### CountryCode
-**`CountryCode`** model can be used to manipulate the selected country code by the user.
-
-|Fields|Type|Description|
-|:---:|:---:|:---:|
-| **name** | `String` | The name of the country |
-| **code** | `String` | The 2 character ISO code of the country|
-| **dialCode** | `String` | The country dial code. By convention, international telephone numbers are represented by prefixing the country code with a plus sign (+). e.g. `+1` for *US* |
-| **flagImage** | `Widget` | Widget that can be used on retrieving the selected country flag's image. |
-| **flagUri** | `String` | Uri of this `CountryCode` located at package's directory to supply at `Image` widget if you're going to get the raw flag image. |
-| **flagImagePackage** | `String` | Package to supply at `Image` widget if you're going to get the raw flag image. |
-| **localize** | `String` | Convenient getter for localized version of this country code. |
-
-----
 
 ### ❓ FAQ:
 * **How to use country code's flag directory in `Image` widget?**

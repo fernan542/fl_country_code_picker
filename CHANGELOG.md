@@ -52,3 +52,8 @@ Initial release
 ## 0.1.5
 - fix: reverts icon width for tile size ([#21](https://github.com/fernan542/fl_country_code_picker/issues/21))
 - feat: remove `showFavoritesIcon` and change `favoritesIcon`'s type to nullable
+
+## 0.1.6
+- feat: adds optional parameter for horizontal title gap
+- refactor: expose custom search bar text style ([#23](https://github.com/fernan542/fl_country_code_picker/pull/23))
+- refactor: adds fallback for text styles using the app text theme ([#24](https://github.com/fernan542/fl_country_code_picker/pull/24))

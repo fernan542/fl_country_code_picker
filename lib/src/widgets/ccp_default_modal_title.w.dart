@@ -9,11 +9,13 @@ class CcpDefaultModalTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16),
+    final style = Theme.of(context).textTheme.headlineMedium;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Text(
-        'Select your country',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        'Select Country',
+        style: style,
       ),
     );
   }

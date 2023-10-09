@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:fl_country_code_picker/src/constants.dart';
 import 'package:flutter/material.dart';
@@ -22,65 +24,21 @@ class FlCountryCodePicker {
     this.favoritesIcon,
     this.countryTextStyle,
     this.dialCodeTextStyle,
-    @Deprecated(
-      'This property will be removed because it is '
-      'unnecessary after making the [favoritesIcon] nullable. '
-      'If you want to show favorites icon, just supply the '
-      'value for [favoritesIcon].',
-    )
-    this.showFavoritesIcon = false,
+    this.searchBarTextStyle,
   });
-
-  /// Convinience getter for all of the available country codes.
-  List<CountryCode> get countryCodes => List<CountryCode>.from(
-        codes.map<CountryCode>(CountryCode.fromMap),
-      );
-
-  /// {@template favorites}
-  /// Favorite [CountryCode]s that can be shown at the top of the list.
-  ///
-  /// Should supply the 2 character ISO code of the country.
-  ///
-  /// Based from: https://countrycode.org/
-  /// {@endtemplate}
-  final List<String> favorites;
-
-  /// Adds all favorites to the list.
-  void addFavorites(List<String> countries) => favorites.addAll(countries);
-
-  /// {@template filtered_countries}
-  /// Filters all of the [CountryCode]s available and only show the codes that
-  /// are existing in this list.
-  /// {@endtemplate}
-  final List<String> filteredCountries;
-
-  /// Adds all of filtered countries to the list.
-  void addFilteredCountries(List<String> countries) =>
-      filteredCountries.addAll(filteredCountries);
 
   /// {@template favorites_icon}
   /// Custom icon of favorite countries.
   ///
-  /// <i class="material-icons md-36">favorite</i> &#x2014;  Defaults to `Icons.favorite`
+  /// <i class="material-icons md-36">favorite</i> &#x2014;
+  /// Defaults to `Icons.favorite`
   /// {@endtemplate}
   final Icon? favoritesIcon;
 
-  /// {@template show_favorites_icon}
-  /// An optional argument for showing favorites icon.
-  ///
-  /// Defaults to `true`.
+  /// {@template horizontal_title_gap}
+  /// Horizontal space between flag, country name, and trailing icon.
   /// {@endtemplate}
-
   final double? horizontalTitleGap;
-
-  /// space between flag and country name
-  @Deprecated(
-    'This property will be removed because it is '
-    'unnecessary after making the [favoritesIcon] nullable. '
-    'If you want to show favorites icon, just supply the '
-    'value for [favoritesIcon].',
-  )
-  final bool showFavoritesIcon;
 
   /// {@template show_search_bar}
   /// An optional argument for showing search bar.
@@ -96,13 +54,11 @@ class FlCountryCodePicker {
   /// {@endtemplate}
   final bool showDialCode;
 
-  /// {@template item_builder}
-  ///
-  /// {@endtemplate}
-  // final IndexedWidgetBuilder itemBuilder;
-
   /// {@template title}
-  /// Can be used to customize the title for country code picker modal.
+  /// Can be used to customize the title of the country code picker modal.
+  ///
+  /// If null, defaults to a Text widget with headlineMedium text style
+  /// from the current [Theme].
   /// {@endtemplate}
   final Widget? title;
 
@@ -120,28 +76,57 @@ class FlCountryCodePicker {
   final bool localize;
 
   /// {@template country_text_style}
-  /// Can be used to customize the style of the country name.
+  /// Optional parameter to customize the text style of the country names.
+  ///
+  /// If null, defaults to the labelLarge text style from the current [Theme].
   /// {@endtemplate}
   final TextStyle? countryTextStyle;
 
   /// {@template dial_code_text_style}
-  /// Can be used to customize the appearance of the phone code eg: +1
+  /// Optional parameter to customize the appearance of the country dial codes.
+  ///
+  /// If null, defaults to the titleMedium text style from the current [Theme].
   /// {@endtemplate}
   final TextStyle? dialCodeTextStyle;
 
-  /// Shows the [CountryCodePickerModal] modal.
+  /// {@template search_bar_text_style}
+  /// Optional parameter to customize the appearance of the search bar.
+  /// {@endtemplate}
+  final TextStyle? searchBarTextStyle;
+
+  /// Convenient getter for all of the available country codes.
+  List<CountryCode> get countryCodes => List<CountryCode>.from(
+        codes.map<CountryCode>(CountryCode.fromMap),
+      );
+
+  /// {@template favorites}
+  /// Favorite [CountryCode]s that can be shown at the top of the list.
   ///
-  /// Parameters:
-  /// * context - A handle to the location of a widget in the widget tree.
-  /// * isFullScreen - Shows the modal in full screen mode.
-  /// * pickerMinHeight / pickerMaxHeight - Picker modal constraints.
-  /// * scrollToDeviceLocale - Automatically scroll to device's locale.
-  /// * initialSelectedLocale - Automatically scroll to user-defined locale.
+  /// Should supply the 2 character ISO code of the country.
+  ///
+  /// Based from: https://countrycode.org/
+  /// {@endtemplate}
+  final List<String> favorites;
+
+  /// {@template filtered_countries}
+  /// Filters all of the [CountryCode]s available and only show the codes that
+  /// are existing in this list.
+  /// {@endtemplate}
+  final List<String> filteredCountries;
+
+  /// Adds all favorites to the list.
+  void addFavorites(List<String> countries) => favorites.addAll(countries);
+
+  /// Adds all of filtered countries to the list.
+  void addFilteredCountries(List<String> countries) =>
+      filteredCountries.addAll(filteredCountries);
+
+  /// Shows the [CountryCodePickerModal] modal.
   ///
   /// If `scrollToDeviceLocale` was set to `true`, it will override the
   /// value from `initialSelectedLocale` parameter.
   ///
-  /// Returns the selected [CountryCode] by the user.
+  /// Returns the selected [CountryCode].
   Future<CountryCode?> showPicker({
     required BuildContext context,
     bool fullScreen = false,
@@ -168,15 +153,18 @@ class FlCountryCodePicker {
     );
 
     // For automatic scrolling.
-    final deviceLocale = WidgetsBinding.instance.window.locale.countryCode;
+    final deviceLocale = ui.PlatformDispatcher.instance.locale.countryCode;
 
-    final focusedCountry = scrollToDeviceLocale
-        ? _validateIfCountryCodeIsSupported(deviceLocale)
-            ? deviceLocale
-            : null
-        : _validateIfCountryCodeIsSupported(initialSelectedLocale)
-            ? initialSelectedLocale
-            : null;
+    String? focusedCountry;
+    if (scrollToDeviceLocale) {
+      if (_codeIsSupported(deviceLocale)) {
+        focusedCountry = deviceLocale;
+      }
+    } else {
+      if (_codeIsSupported(initialSelectedLocale)) {
+        focusedCountry = initialSelectedLocale;
+      }
+    }
 
     final country = showModalBottomSheet<CountryCode?>(
       elevation: 0,
@@ -200,13 +188,14 @@ class FlCountryCodePicker {
         focusedCountry: focusedCountry,
         countryTextStyle: countryTextStyle,
         dialCodeTextStyle: dialCodeTextStyle,
+        searchBarTextStyle: searchBarTextStyle,
       ),
     );
 
     return country;
   }
 
-  bool _validateIfCountryCodeIsSupported(String? code) {
+  bool _codeIsSupported(String? code) {
     if (code == null) return false;
     final allCountryCodes = codes.map(CountryCode.fromMap).toList();
     final index = allCountryCodes.indexWhere((c) => c.code == code);

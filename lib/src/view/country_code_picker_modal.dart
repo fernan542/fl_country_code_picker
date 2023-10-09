@@ -26,6 +26,7 @@ class CountryCodePickerModal extends StatefulWidget {
     this.dialCodeTextStyle,
     Key? key,
     this.horizontalTitleGap,
+    this.searchBarTextStyle,
   }) : super(key: key);
 
   /// {@macro favorites}
@@ -60,6 +61,9 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// {@macro dial_code_text_style}
   final TextStyle? dialCodeTextStyle;
+
+  /// {@macro search_bar_text_style}
+  final TextStyle? searchBarTextStyle;
 
   /// space between flag and country name
   final double? horizontalTitleGap;
@@ -122,8 +126,9 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
       children: [
         widget.title ?? const CcpDefaultModalTitle(),
         if (widget.showSearchBar)
-          CcpDefaultSearchBar(
+          SearchBar(
             decoration: widget.searchBarDecoration,
+            style: widget.searchBarTextStyle,
             onChanged: (query) {
               availableCountryCodes
                 ..clear()
@@ -156,24 +161,26 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
             itemCount: availableCountryCodes.length,
             itemBuilder: (context, index) {
               final code = availableCountryCodes[index];
-
               final name =
                   widget.localize ? code.localize(context).name : code.name;
+
+              final textTheme = Theme.of(context).textTheme;
 
               return ListTile(
                 onTap: () => Navigator.pop(context, code),
                 leading: code.flagImage(),
-                horizontalTitleGap: widget.horizontalTitleGap ?? 40,
+                horizontalTitleGap: widget.horizontalTitleGap,
                 title: Text(
                   name,
-                  style: widget.countryTextStyle,
+                  style: widget.countryTextStyle ?? textTheme.labelLarge,
                 ),
                 trailing: CcpDefaultListItemTrailing(
                   code: code,
                   icon: widget.favoritesIcon,
                   favorites: widget.favorites,
                   showDialCode: widget.showDialCode,
-                  dialCodeTextStyle: widget.dialCodeTextStyle,
+                  dialCodeTextStyle:
+                      widget.dialCodeTextStyle ?? textTheme.labelLarge,
                 ),
               );
             },
