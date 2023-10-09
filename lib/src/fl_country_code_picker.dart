@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 /// {@endtemplate}
 class FlCountryCodePicker {
   /// {@macro fl_country_code_picker}
-  const FlCountryCodePicker(
-    this.horizontalTitleGap, {
+  const FlCountryCodePicker({
     this.title,
     this.localize = true,
+    this.horizontalTitleGap,
     this.searchBarDecoration,
     this.showDialCode = true,
     this.showSearchBar = true,
