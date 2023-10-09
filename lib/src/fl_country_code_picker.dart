@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 /// {@endtemplate}
 class FlCountryCodePicker {
   /// {@macro fl_country_code_picker}
-  const FlCountryCodePicker(this.horizontalTitleGap, {
+  const FlCountryCodePicker(
+    this.horizontalTitleGap, {
     this.title,
     this.localize = true,
     this.searchBarDecoration,
@@ -71,6 +72,7 @@ class FlCountryCodePicker {
   /// {@endtemplate}
 
   final double? horizontalTitleGap;
+
   /// space between flag and country name
   @Deprecated(
     'This property will be removed because it is '
