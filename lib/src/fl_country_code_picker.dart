@@ -27,7 +27,7 @@ class FlCountryCodePicker {
       'If you want to show favorites icon, just supply the '
       'value for [favoritesIcon].',
     )
-        this.showFavoritesIcon = false,
+    this.showFavoritesIcon = false,
   });
 
   /// Convinience getter for all of the available country codes.

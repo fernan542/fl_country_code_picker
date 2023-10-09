@@ -24,7 +24,8 @@ class CountryCodePickerModal extends StatefulWidget {
     this.filteredCountries = const [],
     this.countryTextStyle,
     this.dialCodeTextStyle,
-    Key? key, this.horizontalTitleGap,
+    Key? key,
+    this.horizontalTitleGap,
   }) : super(key: key);
 
   /// {@macro favorites}
@@ -162,7 +163,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
               return ListTile(
                 onTap: () => Navigator.pop(context, code),
                 leading: code.flagImage(),
-                horizontalTitleGap: widget.horizontalTitleGap?? 40,
+                horizontalTitleGap: widget.horizontalTitleGap ?? 40,
                 title: Text(
                   name,
                   style: widget.countryTextStyle,
