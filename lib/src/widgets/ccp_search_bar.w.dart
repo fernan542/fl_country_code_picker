@@ -1,13 +1,13 @@
 import 'package:fl_country_code_picker/src/constants.dart';
 import 'package:flutter/material.dart';
 
-/// {@template search_bar}
+/// {@template ccp_search_bar}
 /// The default modal search bar widget that can be customized by supplying
 /// the [decoration] parameter.
 /// {@endtemplate}
-class SearchBar extends StatelessWidget {
+class CcpSearchBar extends StatelessWidget {
   /// {@macro search_bar}
-  const SearchBar({
+  const CcpSearchBar({
     Key? key,
     this.onChanged,
     this.decoration,

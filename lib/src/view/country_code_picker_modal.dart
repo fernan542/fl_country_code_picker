@@ -126,7 +126,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
       children: [
         widget.title ?? const CcpDefaultModalTitle(),
         if (widget.showSearchBar)
-          SearchBar(
+          CcpSearchBar(
             decoration: widget.searchBarDecoration,
             style: widget.searchBarTextStyle,
             onChanged: (query) {
