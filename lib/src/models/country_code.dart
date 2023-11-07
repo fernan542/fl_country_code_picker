@@ -31,6 +31,30 @@ class CountryCode {
     );
   }
 
+  /// Gets [CountryCode] based on the given [dialCode].
+  static CountryCode? fromDialCode(String dialCode) {
+    final allCountryCodes = codes.map(CountryCode.fromMap).toList();
+    final index = allCountryCodes.indexWhere((c) => c.dialCode == dialCode);
+    if (index == -1) return null;
+    return allCountryCodes[index];
+  }
+
+  /// Gets [CountryCode] based on the given [code].
+  static CountryCode? fromCode(String code) {
+    final allCountryCodes = codes.map(CountryCode.fromMap).toList();
+    final index = allCountryCodes.indexWhere((c) => c.code == code);
+    if (index == -1) return null;
+    return allCountryCodes[index];
+  }
+
+  /// Gets [CountryCode] based on the given [name].
+  static CountryCode? fromName(String name) {
+    final allCountryCodes = codes.map(CountryCode.fromMap).toList();
+    final index = allCountryCodes.indexWhere((c) => c.name == name);
+    if (index == -1) return null;
+    return allCountryCodes[index];
+  }
+
   /// The name of the country.
   ///
   /// Cannot be empty.
