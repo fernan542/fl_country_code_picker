@@ -32,6 +32,7 @@ class CountryCode {
   }
 
   /// Gets [CountryCode] based on the given [dialCode].
+  /// Returns `null` if not found.
   static CountryCode? fromDialCode(String dialCode) {
     final allCountryCodes = codes.map(CountryCode.fromMap).toList();
     final index = allCountryCodes.indexWhere((c) => c.dialCode == dialCode);
@@ -40,6 +41,7 @@ class CountryCode {
   }
 
   /// Gets [CountryCode] based on the given [code].
+  /// Returns `null` if not found.
   static CountryCode? fromCode(String code) {
     final allCountryCodes = codes.map(CountryCode.fromMap).toList();
     final index = allCountryCodes.indexWhere((c) => c.code == code);
@@ -48,6 +50,7 @@ class CountryCode {
   }
 
   /// Gets [CountryCode] based on the given [name].
+  /// Returns `null` if not found.
   static CountryCode? fromName(String name) {
     final allCountryCodes = codes.map(CountryCode.fromMap).toList();
     final index = allCountryCodes.indexWhere((c) => c.name == name);
