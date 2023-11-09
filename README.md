@@ -56,17 +56,18 @@ Call the modal for country code picker.
 ```
 To enable localization, add the following lines in your `MaterialApp`.
 ```dart
+import  'package:fl_country_code_picker/fl_country_code_picker.dart' as flc;
+```
+```dart
 MaterialApp(
 	title: 'Your App',
 	// Supported locales at the moment.
 	// Cannot find your locale? Please make a request.
 	supportedLocales: flc.supportedLocales.map((e) => Locale(e)),
 	localizationsDelegates: const [
-		// Package's localization delegate.
+	    // Package's localization delegate.
+            // You can still add other delegates from your app.
 		CountryLocalizations.delegate,
-		GlobalWidgetsLocalizations.delegate,
-		GlobalMaterialLocalizations.delegate,
-		GlobalCupertinoLocalizations.delegate,
 	],
 	// ... some omitted values
 );
@@ -74,6 +75,60 @@ MaterialApp(
 
 ----
 
+### FlCountryCodePicker
+**`FlCountryCodePicker`** class contains all of the functionalities of this package. This contains (optional) properties that can be supply to achieve customization at picker's view or appearance.
+
+|Fields|Type| Description                                                                                                                                                                         |
+|:---:|:---:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **title** | `Widget?` | An optional argument for modal's title customization.
+| **localize** | `bool` | An optional argument for localizing the country names based on device's current selected Language (country/region). Make sure to add the required delegates to your `MaterialApp`. Defaults to `true`.
+| **horizontalTitleGap** | `double?` | An optional argument for horizontal space between flag, country name, and trailing icon.
+| **searchBarDecoration** | `InputDecoration?` | An optional argument for appearance customization of modal's search bar.                                                                                                            
+| **showDialCode** | `bool` | An optional argument for showing dial code at each tile. Defaults to `true`.
+| **showSearchBar** | `bool` | An optional argument for showing search bar. Defaults to `true`.                                                                                                 
+| **favorites** | `List<String>?` | Favorite countries that can be shown at the top of the list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']`                                        |
+| **filteredCountries** | `List<String>?` | Filters all of the [CountryCode]s available and only show the codes that are existing in this list. Should supply the 2 character ISO code of the country e.g. `['US', 'PH', 'AU']`
+| **favoritesIcon** | `Icon` | Custom icon of favorite countries. Defaults to ❤️.                                                                                                                                  
+| **countryTextStyle** | `TextStyle?` | An optional argument for country name text customization.                                              
+| **dialCodeTextStyle** | `TextStyle?` | An optional argument for phone code text customization.                                                                                                               
+| **searchBarTextStyle** | `TextStyle?` | An optional argument for search bar text customization.
+----
+
+### showPicker
+**`showPicker`** is a method under the `FlCountryCodePicker` that can be used to show and customize the country code picker modal.
+
+|Fields|Type|Description|
+|:---:|:---:|:---|
+| **context** | `BuildContext` | A handle to the location of a widget in the widget tree. `Required`.|
+| **isFullScreen** | `bool` | Shows the modal in full screen mode. Defaults to `false`. |
+| **shape** | `ShapeBorder` | The shape of the modal. Defaults to `RoundedRectangleBorder` with rounded top corners. |
+| **pickerMinHeight** | `double` | Picker modal constraints for minimum height. Defaults to `150`. |
+| **pickerMaxHeight** | `double` | Picker modal constraints for maximum height. Defaults to `500`. |
+| **scrollToDeviceLocale** | `bool` | Property to automatically scroll at device's locale within the picker. Defaults to `false`. |
+| **initialSelectedLocale** | `String?` | The 2 character ISO code of the country where the scrollController will automatically scroll to. |
+| **barrierColor** | `Color` | Color of the modal barrier. Defaults to black with low opacity. |
+| **clipBehavior** | `Clip?` | Can be passed in to customize the appearance of modal. Defaults to `Clip.hardEdge`. |
+| **backgroundColor** | `Color?` | Can be passed in to customize the appearance of modal. Defaults to white. |
+
+
+----
+
+### CountryCode
+**`CountryCode`** model can be used to manipulate the selected country code by the user.
+
+|Fields|Parameter|Returns|Description|
+|:---:|:---:|:---:|:---|
+| **name** | `n/a` | `String` | The name of the country |
+| **code** | `n/a` | `String` | The 2 character ISO code of the country|
+| **dialCode** | `n/a` | `String` | The country dial code. By convention, international telephone numbers are represented by prefixing the country code with a plus sign (+). e.g. `+1` for *US* |
+| **flagImage** | `n/a` | `Widget` | Widget that can be used on retrieving the selected country flag's image. |
+| **flagUri** | `n/a` | `String` | Uri of this `CountryCode` located at package's directory to supply at `Image` widget if you're going to get the raw flag image. |
+| **flagImagePackage** | `n/a` | `String` | Package to supply at `Image` widget if you're going to get the raw flag image. |
+| **localize** | `n/a` | `String` | Convenient getter for localized version of this country code. |
+| **fromDialCode** | `String?` | `CountryCode` | Static method that gets `CountryCode` based on the given *dial code*. Returns `null` if not found. e.g. `CountryCode.fromDialCode('+63')` |
+| **fromCode** | `String?` | `CountryCode` | Static method that gets `CountryCode` based on the given *country code*. Returns `null` if not found. e.g. `CountryCode.fromCode('PH')` |
+| **fromName** | `String?` | `CountryCode` | Static method that gets `CountryCode` based on the given *country name*. Returns `null` if not found. e.g. `CountryCode.fromName('Philippines')` |
+----
 
 ### ❓ FAQ:
 * **How to use country code's flag directory in `Image` widget?**

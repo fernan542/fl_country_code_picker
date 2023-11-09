@@ -68,6 +68,65 @@ void main() {
       });
     });
 
+    group('fromDialCode', () {
+      test('returns the correct country code model with + sign', () {
+        expect(
+          CountryCode.fromDialCode('+63'),
+          equals(createSubject()),
+        );
+      });
+
+      test('returns the correct country code model without + sign', () {
+        expect(
+          CountryCode.fromDialCode('63'),
+          equals(createSubject()),
+        );
+      });
+
+      test('returns null if dial code does not exists', () {
+        expect(
+          CountryCode.fromDialCode('z'),
+          equals(null),
+        );
+      });
+    });
+
+    group('fromCode', () {
+      test(
+          'returns the correct country code model '
+          'from the given country code', () {
+        expect(
+          CountryCode.fromCode('PH'),
+          equals(createSubject()),
+        );
+      });
+
+      test('returns null if country code does not exists', () {
+        expect(
+          CountryCode.fromCode('z'),
+          equals(null),
+        );
+      });
+    });
+
+    group('fromName', () {
+      test(
+          'returns the correct country code model '
+          'from the given country name', () {
+        expect(
+          CountryCode.fromName('Philippines'),
+          equals(createSubject()),
+        );
+      });
+
+      test('returns null if country name does not exists', () {
+        expect(
+          CountryCode.fromName('z'),
+          equals(null),
+        );
+      });
+    });
+
     group('equality', () {
       test('should return true if instance is the same', () {
         final main = createSubject();

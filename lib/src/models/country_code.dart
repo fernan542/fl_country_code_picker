@@ -31,37 +31,47 @@ class CountryCode {
     );
   }
 
-  /// Gets [CountryCode] based on the given [dialCode].
+  /// Gets [CountryCode] based on the given dial code.
   /// Returns `null` if not found.
   static CountryCode? fromDialCode(String? dialCode) {
     if (dialCode == null) return null;
-    // ignore: parameter_assignments
-    if (!dialCode.startsWith('+')) dialCode = '+$dialCode';
+
+    var formattedDC = dialCode;
+    if (!dialCode.startsWith('+')) formattedDC = '+$formattedDC';
+
     final allCountryCodes = codes.map(CountryCode.fromMap).toList();
-    final index = allCountryCodes.indexWhere((c) => c.dialCode == dialCode);
+
+    final index = allCountryCodes.indexWhere((c) => c.dialCode == formattedDC);
     if (index == -1) return null;
+
     return allCountryCodes[index];
   }
 
-  /// Gets [CountryCode] based on the given [code].
+  /// Gets [CountryCode] based on the given country code.
   /// Returns `null` if not found.
   static CountryCode? fromCode(String? code) {
     if (code == null) return null;
+
     final allCountryCodes = codes.map(CountryCode.fromMap).toList();
+
     final index = allCountryCodes
         .indexWhere((c) => c.code.toUpperCase() == code.toUpperCase());
     if (index == -1) return null;
+
     return allCountryCodes[index];
   }
 
-  /// Gets [CountryCode] based on the given [name].
+  /// Gets [CountryCode] based on the given country name.
   /// Returns `null` if not found.
   static CountryCode? fromName(String? name) {
     if (name == null) return null;
+
     final allCountryCodes = codes.map(CountryCode.fromMap).toList();
+
     final index = allCountryCodes
         .indexWhere((c) => c.name.toLowerCase() == name.toLowerCase());
     if (index == -1) return null;
+
     return allCountryCodes[index];
   }
 

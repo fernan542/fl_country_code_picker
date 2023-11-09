@@ -57,3 +57,11 @@ Initial release
 - feat: adds optional parameter for horizontal title gap
 - refactor: expose custom search bar text style ([#23](https://github.com/fernan542/fl_country_code_picker/pull/23))
 - refactor: adds fallback for text styles using the app text theme ([#24](https://github.com/fernan542/fl_country_code_picker/pull/24))
+
+## 0.1.7
+- feat: adds support for querying a `CountryCode` using dial code ([#26](https://github.com/fernan542/fl_country_code_picker/pull/26))
+- feat: adds support for querying a `CountryCode` using country code ([#26](https://github.com/fernan542/fl_country_code_picker/pull/26))
+- feat: adds support for querying a `CountryCode` using country name ([#26](https://github.com/fernan542/fl_country_code_picker/pull/26))
+- docs: ReadMe file improvements
+- chore: upgrade sdk support to `sdk: ">=3.0.0 <4.0.0"`
+- chore: upgrade dependency to `mocktail v1.0.1`
