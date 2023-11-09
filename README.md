@@ -10,8 +10,8 @@
 A Flutter package for showing a modal that contains country dial code. The user can search for the available codes and select right from the modal. Also, it has an [automatic scrolling](https://pub.dev/packages/fl_country_code_picker#showpicker) feature that points at current device's locale. *Supports localizations*!
 
 ## 📌 Examples
-<img  src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/default-view.gif?raw=true"  width="200"/> <img  src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-favorites.gif?raw=true"  width="200"/> <img  src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-filter.gif?raw=true"  width="200"/>
-<img src="https://github.com/fernan542/fl_country_code_picker/blob/master/screenshots/picker-with-favorite-and-filter.gif?raw=true"  width="200"/>
+<img  src="https://media.giphy.com/media/Kp6uZ5WxIxtaCTdNkN/giphy.gif"  width="200"/> <img  src="https://media.giphy.com/media/09n1sHf2oFLzBpWctD/giphy.gif"  width="200"/> <img  src="https://media.giphy.com/media/gfkiH5sD3pssUTtTxN/giphy.gif"  width="200"/>
+<img src="https://media.giphy.com/media/4SakLnCdChJGVQWjLf/giphy.gif"  width="200"/>
 
 ## 🕹️ Usage
 Instantiate `FlCountryCodePicker` class to access the package's functionalities and properties.
