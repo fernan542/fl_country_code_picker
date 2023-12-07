@@ -9,6 +9,8 @@
 
 A Flutter package for showing a modal that contains country dial code. The user can search for the available codes and select right from the modal. Also, it has an [automatic scrolling](https://pub.dev/packages/fl_country_code_picker#showpicker) feature that points at current device's locale. *Supports localizations*!
 
+Where do the data come from? Check the [references](https://pub.dev/packages/fl_country_code_picker#References) for more information about the data.
+
 ## 📌 Examples
 <img  src="https://media.giphy.com/media/Kp6uZ5WxIxtaCTdNkN/giphy.gif"  width="200"/> <img  src="https://media.giphy.com/media/09n1sHf2oFLzBpWctD/giphy.gif"  width="200"/> <img  src="https://media.giphy.com/media/gfkiH5sD3pssUTtTxN/giphy.gif"  width="200"/>
 <img src="https://media.giphy.com/media/4SakLnCdChJGVQWjLf/giphy.gif"  width="200"/>
@@ -39,9 +41,9 @@ Call the modal for country code picker.
     GestureDetector(
     onTap: () async {
         // Show the country code picker when tapped.
-        final code = await countryPicker.showPicker(context: context);
+        final picked= await countryPicker.showPicker(context: context);
         // Null check
-        if (code != null) print(code);
+        if (picked!= null) print(picked);
     },
     child: Container(
         padding: const  EdgeInsets.symmetric(
@@ -72,6 +74,15 @@ MaterialApp(
 	// ... some omitted values
 );
 ```
+
+----
+## 🆕 What's New?
+- Added `i18n` support for **Burmese (Myanmar)**
+- Improved documentation by adding data references.
+- Added support for National Significant Numbers (NSN) per country.
+  - Check the example for default view to use NSN.
+
+  <img  src="https://media.giphy.com/media/sgYviJWb2ktMvL0sPy/giphy.gif"  width="200"/>
 
 ----
 
@@ -121,6 +132,7 @@ MaterialApp(
 | **name** | `n/a` | `String` | The name of the country |
 | **code** | `n/a` | `String` | The 2 character ISO code of the country|
 | **dialCode** | `n/a` | `String` | The country dial code. By convention, international telephone numbers are represented by prefixing the country code with a plus sign (+). e.g. `+1` for *US* |
+| **nationalSignificantNumber** | `n/a` | `int?` | The number of digits that allow to uniquely identify a number within the country. It excludes the country code and any trunk code or access code. It includes the mobile prefix towards the total number of digits. </br> Returns `null` if country doesn't have concrete value for NSN.|
 | **flagImage** | `n/a` | `Widget` | Widget that can be used on retrieving the selected country flag's image. |
 | **flagUri** | `n/a` | `String` | Uri of this `CountryCode` located at package's directory to supply at `Image` widget if you're going to get the raw flag image. |
 | **flagImagePackage** | `n/a` | `String` | Package to supply at `Image` widget if you're going to get the raw flag image. |
@@ -158,6 +170,12 @@ Then pass it to `FlCountryCodePicker`'s title parameter.
 ```dart
 countryPicker = const  FlCountryCodePicker(title: title);
 ```
+
+## 📚 References
+* Internationalization Codes: https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+* Country Codes: https://countrycode.org
+* International Call Prefixes: https://www.globalcallforwarding.com/international-call-prefixes
+* National Significant Number https://en.wikipedia.org/wiki/List_of_mobile_telephone_prefixes_by_country
 
 ## 🐞 Bugs/Requests
 If you encounter any problems feel open an issue. If you feel the library is missing a feature, please raise a ticket on Github and we'll look into it. Pull request are also welcome.

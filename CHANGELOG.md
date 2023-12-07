@@ -65,3 +65,9 @@ Initial release
 - docs: ReadMe file improvements
 - chore: upgrade sdk support to `sdk: ">=3.0.0 <4.0.0"`
 - chore: upgrade dependency to `mocktail v1.0.1`
+
+## 0.1.8
+- feat: adds support for National Significant Numbers per country
+- docs: adds References for data used in project
+- fix: removes type of List for country name i18n ([#27](https://github.com/fernan542/fl_country_code_picker/issues/27))
+- chore: add i18n support for Burmese (Myanmar) ([#27](https://github.com/fernan542/fl_country_code_picker/issues/27))

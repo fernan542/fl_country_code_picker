@@ -20,6 +20,7 @@ class CountryCode {
     required this.name,
     required this.code,
     required this.dialCode,
+    this.nationalSignificantNumber,
   });
 
   /// Converts the country code from map to the actual item.
@@ -28,6 +29,7 @@ class CountryCode {
       name: map['name'] as String? ?? 'United States',
       code: map['code'] as String? ?? 'US',
       dialCode: map['dial_code'] as String? ?? '+1',
+      nationalSignificantNumber: map['national_significant_number'] as int?,
     );
   }
 
@@ -83,7 +85,7 @@ class CountryCode {
   /// {@template code}
   /// The 2 character ISO code of the country.
   ///
-  /// Based from: https://countrycode.org/
+  /// For more info: https://countrycode.org
   /// {@endtemplate}
   final String code;
 
@@ -100,6 +102,23 @@ class CountryCode {
   /// {@endtemplate}
   final String dialCode;
 
+  /// The number of digits that allow to uniquely identify a number
+  /// within the country. It excludes the country code and any trunk code or
+  /// access code. It includes the mobile prefix towards the total
+  /// number of digits.
+  ///
+  /// This can be used to validate the length of the phone input.
+  ///
+  /// Returns `null` if country doesn't have concrete value for NSN.
+  ///
+  /// ### Warning
+  /// The provided NSN might not be accurate. Please read the link
+  /// below to make sure that the possible range of countries that your user
+  /// might select is correct.
+  ///
+  /// For more info: https://en.wikipedia.org/wiki/List_of_mobile_telephone_prefixes_by_country
+  final int? nationalSignificantNumber;
+
   /// Convenient getter for localized version of this country code.
   CountryCode localize(BuildContext context) => copyWith(
         name: CountryLocalizations.of(context)?.translation(code),
@@ -111,7 +130,7 @@ class CountryCode {
   /// Don't forget to use the `flagImagePackage` to prevent [OS not found]
   /// error because it is inside the package's bundle.
   ///
-  /// ### Example:
+  /// ### Example
   /// ```dart
   ///      Image.asset(
   ///        fit: fit,
@@ -177,9 +196,9 @@ class CountryCodeFlagWidget extends StatelessWidget {
     required this.width,
     required this.alignment,
     required this.countryCode,
-    Key? key,
     this.fit,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// The associated [CountryCode] for display.
   final CountryCode countryCode;

@@ -11,9 +11,9 @@ class CcpDefaultListItemTrailing extends StatelessWidget {
     required this.code,
     required this.favorites,
     required this.showDialCode,
-    Key? key,
     this.dialCodeTextStyle,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// {@macro code}
   final CountryCode code;

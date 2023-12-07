@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 class CcpSearchBar extends StatelessWidget {
   /// {@macro search_bar}
   const CcpSearchBar({
-    Key? key,
     this.onChanged,
     this.decoration,
     this.style,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// Callback function on query changed.
   final void Function(String)? onChanged;

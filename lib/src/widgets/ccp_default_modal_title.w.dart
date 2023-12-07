@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// {@endtemplate}
 class CcpDefaultModalTitle extends StatelessWidget {
   /// {@macro ccp_default_modal_title}
-  const CcpDefaultModalTitle({Key? key}) : super(key: key);
+  const CcpDefaultModalTitle({super.key});
 
   @override
   Widget build(BuildContext context) {

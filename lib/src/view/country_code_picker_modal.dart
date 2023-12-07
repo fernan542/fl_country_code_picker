@@ -24,10 +24,10 @@ class CountryCodePickerModal extends StatefulWidget {
     this.filteredCountries = const [],
     this.countryTextStyle,
     this.dialCodeTextStyle,
-    Key? key,
     this.horizontalTitleGap,
     this.searchBarTextStyle,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// {@macro favorites}
   final List<String> favorites;
@@ -89,7 +89,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
 
     final favoriteList = <CountryCode>[
       if (widget.favorites.isNotEmpty)
-        ...allCountryCodes.where((c) => widget.favorites.contains(c.code))
+        ...allCountryCodes.where((c) => widget.favorites.contains(c.code)),
     ];
 
     final filteredList = [

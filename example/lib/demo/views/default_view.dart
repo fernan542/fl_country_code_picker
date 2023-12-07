@@ -11,13 +11,33 @@ class DefaultPickerView extends StatefulWidget {
 
 class _DefaultPickerViewState extends State<DefaultPickerView> {
   late final FlCountryCodePicker countryPicker;
+  late final TextEditingController phoneTextController;
   CountryCode? countryCode;
+
+  bool hasMaxLengthError = false;
 
   final countryTextController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    countryCode = CountryCode.fromName('United States');
+
+    phoneTextController = TextEditingController()
+      ..addListener(() {
+        if (countryCode != null &&
+            countryCode!.nationalSignificantNumber != null) {
+          if (phoneTextController.text.length !=
+              countryCode!.nationalSignificantNumber!) {
+            hasMaxLengthError = true;
+          } else {
+            hasMaxLengthError = false;
+          }
+
+          setState(() {});
+        }
+      });
+
     countryPicker = const FlCountryCodePicker(
       countryTextStyle: TextStyle(
         color: Colors.red,
@@ -63,9 +83,10 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
         ),
         kSpacer,
         TextFormField(
+          maxLines: 1,
+          controller: phoneTextController,
           textInputAction: TextInputAction.done,
           keyboardType: TextInputType.number,
-          maxLines: 1,
           decoration: InputDecoration(
             prefix: GestureDetector(
               onTap: () async {
@@ -93,6 +114,9 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
             fillColor: Colors.white,
             filled: true,
             border: kFieldBorder,
+            errorText: hasMaxLengthError
+                ? 'Please enter exactly ${countryCode?.nationalSignificantNumber} digits.'
+                : null,
           ),
         ),
         kSpacer,
