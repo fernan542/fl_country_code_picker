@@ -2,25 +2,20 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-
-class FakeBuildContext extends Fake implements BuildContext {}
 
 void main() {
   group('CountryCode', () {
-    setUpAll(() {
-      registerFallbackValue(FakeBuildContext());
-    });
-
     CountryCode createSubject({
       String code = 'PH',
       String dialCode = '+63',
       String name = 'Philippines',
+      int? nationalSignificantNumber = 10,
     }) {
       return CountryCode(
         code: code,
         dialCode: dialCode,
         name: name,
+        nationalSignificantNumber: nationalSignificantNumber,
       );
     }
 
@@ -62,6 +57,7 @@ void main() {
             'name': 'Philippines',
             'code': 'PH',
             'dial_code': '+63',
+            'national_significant_number': 10,
           }),
           equals(createSubject()),
         );
@@ -140,8 +136,26 @@ void main() {
         expect(main.hashCode == other.hashCode, true);
       });
 
-      test('should return false if values are different', () {
+      test('should return false if names are different', () {
         final main = createSubject().copyWith(name: 'test');
+        final other = createSubject();
+        expect(main.hashCode == other.hashCode, false);
+      });
+
+      test('should return false if codes are different', () {
+        final main = createSubject().copyWith(code: 'test');
+        final other = createSubject();
+        expect(main.hashCode == other.hashCode, false);
+      });
+
+      test('should return false if dialCode are different', () {
+        final main = createSubject().copyWith(dialCode: 'test');
+        final other = createSubject();
+        expect(main.hashCode == other.hashCode, false);
+      });
+
+      test('should return false if NSN are different', () {
+        final main = createSubject().copyWith(nationalSignificantNumber: 99999);
         final other = createSubject();
         expect(main.hashCode == other.hashCode, false);
       });
@@ -214,10 +228,7 @@ Widget makeTestableWidget(Widget child) {
       GlobalMaterialLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate,
     ],
-    supportedLocales: const [
-      Locale('en'),
-      Locale('es'),
-    ],
+    supportedLocales: supportedLocales.map(Locale.new),
     locale: const Locale('es'),
     home: child,
   );

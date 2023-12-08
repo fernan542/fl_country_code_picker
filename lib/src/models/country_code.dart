@@ -167,22 +167,30 @@ class CountryCode {
     return other is CountryCode &&
         other.name == name &&
         other.code == code &&
-        other.dialCode == dialCode;
+        other.dialCode == dialCode &&
+        other.nationalSignificantNumber == nationalSignificantNumber;
   }
 
   @override
-  int get hashCode => name.hashCode ^ code.hashCode ^ dialCode.hashCode;
+  int get hashCode =>
+      name.hashCode ^
+      code.hashCode ^
+      dialCode.hashCode ^
+      nationalSignificantNumber.hashCode;
 
   /// Returns a copy of this [CountryCode] with the given values updated.
   CountryCode copyWith({
     String? name,
     String? code,
     String? dialCode,
+    int? nationalSignificantNumber,
   }) {
     return CountryCode(
       name: name ?? this.name,
       code: code ?? this.code,
       dialCode: dialCode ?? this.dialCode,
+      nationalSignificantNumber:
+          nationalSignificantNumber ?? this.nationalSignificantNumber,
     );
   }
 }

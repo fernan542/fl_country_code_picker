@@ -6,6 +6,7 @@ import 'package:flutter/services.dart' as svc;
 
 /// Importable list of supported locales.
 const List<String> supportedLocales = [
+  'en',
   'af',
   'am',
   'ar',
@@ -19,7 +20,6 @@ const List<String> supportedLocales = [
   'da',
   'de',
   'el',
-  'en',
   'es',
   'et',
   'fa',
@@ -48,6 +48,7 @@ const List<String> supportedLocales = [
   'ml',
   'mn',
   'ms',
+  'my',
   'nb',
   'nl',
   'nn',
@@ -109,9 +110,16 @@ class CountryLocalizations {
 
   /// Loads the localized country values from supported language codes.
   Future<void> load() async {
-    final rawJson = await svc.rootBundle.loadString(
-      'packages/fl_country_code_picker/i18n/${locale.languageCode}.json',
-    );
+    late final String rawJson;
+    try {
+      rawJson = await svc.rootBundle.loadString(
+        'packages/fl_country_code_picker/i18n/${locale.languageCode}.json',
+      );
+    } catch (_) {
+      rawJson = await svc.rootBundle.loadString(
+        'packages/fl_country_code_picker/i18n/en.json',
+      );
+    }
 
     final jsonMap = Map<String, String>.from(
       json.decode(rawJson) as Map<String, dynamic>,
