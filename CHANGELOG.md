@@ -1,3 +1,6 @@
+## 0.1.9+1
+- test: add a dart cli that checks if the new locale was implemented correctly
+
 ## 0.1.9
 - refactor: sets `en` as the default locale ([#27](https://github.com/fernan542/fl_country_code_picker/issues/27))
 - docs: rearrange the order of CHANGELOG.md
