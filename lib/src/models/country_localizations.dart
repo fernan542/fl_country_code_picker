@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as svc;
 
 /// Importable list of supported locales.
+@Deprecated('Use CountryLocalizations.supportedLocales instead.')
 const List<String> supportedLocales = [
   'en',
   'af',
@@ -91,6 +92,81 @@ class CountryLocalizations {
   /// {@macro country_localizations}
   CountryLocalizations(this.locale);
 
+  /// Importable list of supported locales.
+  static const List<String> supportedLocales = [
+    'en',
+    'af',
+    'am',
+    'ar',
+    'az',
+    'be',
+    'bg',
+    'bn',
+    'bs',
+    'ca',
+    'cs',
+    'da',
+    'de',
+    'el',
+    'es',
+    'et',
+    'fa',
+    'fi',
+    'fr',
+    'gl',
+    'ha',
+    'he',
+    'hi',
+    'hr',
+    'hu',
+    'hy',
+    'id',
+    'is',
+    'it',
+    'ja',
+    'ka',
+    'kk',
+    'km',
+    'ko',
+    'ku',
+    'ky',
+    'lt',
+    'lv',
+    'mk',
+    'ml',
+    'mn',
+    'ms',
+    'my',
+    'nb',
+    'nl',
+    'nn',
+    'no',
+    'pl',
+    'ps',
+    'pt',
+    'ro',
+    'ru',
+    'sd',
+    'sk',
+    'sl',
+    'so',
+    'sq',
+    'sr',
+    'sv',
+    'ta',
+    'tg',
+    'th',
+    'tk',
+    'tr',
+    'tt',
+    'uk',
+    'ug',
+    'ur',
+    'uz',
+    'vi',
+    'zh',
+  ];
+
   /// An identifier used to select a user's language and formatting preferences.
   final Locale locale;
 
@@ -151,7 +227,7 @@ class _CountryLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      supportedLocales.contains(locale.languageCode);
+      CountryLocalizations.supportedLocales.contains(locale.languageCode);
 
   @override
   Future<CountryLocalizations> load(Locale locale) async {

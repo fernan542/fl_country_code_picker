@@ -65,10 +65,10 @@ MaterialApp(
 	title: 'Your App',
 	// Supported locales at the moment.
 	// Cannot find your locale? Please make a request.
-	supportedLocales: flc.supportedLocales.map((e) => Locale(e)),
+	supportedLocales: flc.CountryLocalizations.supportedLocales.map(Locale.new),
 	localizationsDelegates: const [
 	    // Package's localization delegate.
-            // You can still add other delegates from your app.
+        // You can still add other delegates from your app.
 		CountryLocalizations.delegate,
 	],
 	// ... some omitted values

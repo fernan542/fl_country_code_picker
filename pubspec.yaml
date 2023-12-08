@@ -78,6 +78,7 @@ flutter:
     - packages/fl_country_code_picker/i18n/mk.json
     - packages/fl_country_code_picker/i18n/mn.json
     - packages/fl_country_code_picker/i18n/ms.json
+    - packages/fl_country_code_picker/i18n/my.json
     - packages/fl_country_code_picker/i18n/nb.json
     - packages/fl_country_code_picker/i18n/nl.json
     - packages/fl_country_code_picker/i18n/nn.json

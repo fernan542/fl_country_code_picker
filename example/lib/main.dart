@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      supportedLocales: flc.supportedLocales.map(Locale.new),
+      // supportedLocales: flc.supportedLocales.map(Locale.new),
+      supportedLocales:
+          flc.CountryLocalizations.supportedLocales.map(Locale.new),
       localizationsDelegates: const [
         flc.CountryLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
