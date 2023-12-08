@@ -228,7 +228,7 @@ Widget makeTestableWidget(Widget child) {
       GlobalMaterialLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate,
     ],
-    supportedLocales: supportedLocales.map(Locale.new),
+    supportedLocales: CountryLocalizations.supportedLocales.map(Locale.new),
     locale: const Locale('es'),
     home: child,
   );
