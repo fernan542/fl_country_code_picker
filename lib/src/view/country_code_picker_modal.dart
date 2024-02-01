@@ -1,3 +1,4 @@
+import 'package:circle_flags/circle_flags.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:fl_country_code_picker/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -168,13 +169,13 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
 
               return ListTile(
                 onTap: () => Navigator.pop(context, code),
-                leading: code.flagImage(),
+                leading: CircleFlag(code.code, size: 40),
                 horizontalTitleGap: widget.horizontalTitleGap,
                 title: Text(
                   name,
                   style: widget.countryTextStyle ?? textTheme.labelLarge,
                 ),
-                trailing: CcpDefaultListItemTrailing(
+                subtitle: CcpDefaultListItemTrailing(
                   code: code,
                   icon: widget.favoritesIcon,
                   favorites: widget.favorites,
