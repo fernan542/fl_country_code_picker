@@ -170,6 +170,7 @@ class FlCountryCodePicker {
       elevation: 0,
       shape: shape,
       context: context,
+      useSafeArea: true,
       constraints: constraints,
       clipBehavior: clipBehavior,
       barrierColor: barrierColor,
