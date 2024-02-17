@@ -14,6 +14,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   scrollable_positioned_list: ^0.3.8
+  super_cupertino_navigation_bar: ^2.1.2
 
 dev_dependencies:
   flutter_test:

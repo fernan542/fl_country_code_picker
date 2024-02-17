@@ -14,6 +14,10 @@ class FlCountryCodePicker {
   /// {@macro fl_country_code_picker}
   const FlCountryCodePicker({
     this.title,
+    this.defaultAppbarBackgroundColor = Colors.white,
+    this.defaultAppbarForegroundColor = Colors.black,
+    this.defaultAppbarText = 'Select Country Code',
+    this.defaultAppbarCloseIcon = Icons.clear_rounded,
     this.localize = true,
     this.horizontalTitleGap,
     this.searchBarDecoration,
@@ -57,10 +61,30 @@ class FlCountryCodePicker {
   /// {@template title}
   /// Can be used to customize the title of the country code picker modal.
   ///
-  /// If null, defaults to a Text widget with headlineMedium text style
-  /// from the current [Theme].
+  /// If null, defaults to a Sliver App Bar
   /// {@endtemplate}
   final Widget? title;
+
+  /// {@template default_appbar_background_color}
+  /// Can be used to customize the background color of the default appbar.
+  /// {@endtemplate}
+  final Color defaultAppbarBackgroundColor;
+
+  /// {@template default_appbar_foreground_color}
+  /// Can be used to customize the foreground color of the default appbar.
+  /// Color of icon and text.
+  /// {@endtemplate}
+  final Color defaultAppbarForegroundColor;
+
+  /// {@template default_appbar_text}
+  /// It is the text of the default appbar.
+  /// {@endtemplate}
+  final String defaultAppbarText;
+
+  /// {@template default_appbar_close_icon}
+  /// It is the close icon of the default appbar.
+  /// {@endtemplate}
+  final IconData defaultAppbarCloseIcon;
 
   /// {@template search_bar_decoration}
   /// Can be used to customize the appearance of search bar.
@@ -178,6 +202,10 @@ class FlCountryCodePicker {
       isScrollControlled: true,
       builder: (_) => CountryCodePickerModal(
         title: title,
+        defaultAppbarBackgroundColor: defaultAppbarBackgroundColor,
+        defaultAppbarForegroundColor: defaultAppbarForegroundColor,
+        defaultAppbarText: defaultAppbarText,
+        defaultAppbarCloseIcon: defaultAppbarCloseIcon,
         localize: localize,
         favorites: favorites,
         showDialCode: showDialCode,

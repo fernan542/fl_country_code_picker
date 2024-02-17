@@ -19,6 +19,10 @@ class CountryCodePickerModal extends StatefulWidget {
     required this.showSearchBar,
     required this.showDialCode,
     this.title,
+    this.defaultAppbarBackgroundColor = Colors.white,
+    this.defaultAppbarForegroundColor = Colors.black,
+    this.defaultAppbarText = 'Select Country Code',
+    this.defaultAppbarCloseIcon = Icons.clear_rounded,
     this.focusedCountry,
     this.searchBarDecoration,
     this.favorites = const [],
@@ -50,6 +54,18 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// {@macro title}
   final Widget? title;
+
+  /// {@macro default_appbar_background_color}
+  final Color defaultAppbarBackgroundColor;
+
+  /// {@macro default_appbar_foreground_color}
+  final Color defaultAppbarForegroundColor;
+
+  /// {@macro default_appbar_text}
+  final String defaultAppbarText;
+
+  /// {@macro default_appbar_close_icon}
+  final IconData defaultAppbarCloseIcon;
 
   /// {@macro search_bar_decoration}
   final InputDecoration? searchBarDecoration;
@@ -121,73 +137,194 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        widget.title ?? const CcpDefaultModalTitle(),
-        if (widget.showSearchBar)
-          CcpSearchBar(
-            decoration: widget.searchBarDecoration,
-            style: widget.searchBarTextStyle,
-            onChanged: (query) {
-              availableCountryCodes
-                ..clear()
-                ..addAll(
-                  List<CountryCode>.from(
-                    baseList.where(
-                      (c) {
-                        final country =
-                            widget.localize ? c.localize(context) : c;
-
-                        return country.code
-                                .toLowerCase()
-                                .contains(query.toLowerCase()) ||
-                            country.dialCode
-                                .toLowerCase()
-                                .contains(query.toLowerCase()) ||
-                            country.name
-                                .toLowerCase()
-                                .contains(query.toLowerCase());
-                      },
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          if (widget.title != null)
+            SliverPersistentHeader(
+              delegate: _StickyTitleDelegate(
+                height: kToolbarHeight,
+                title: widget.title!,
+              ),
+              pinned: true,
+            )
+          else
+            SliverAppBar(
+              backgroundColor: widget.defaultAppbarBackgroundColor,
+              foregroundColor: widget.defaultAppbarForegroundColor,
+              surfaceTintColor: Colors.transparent,
+              leading: Container(
+                margin: const EdgeInsets.only(left: 16, top: 11, bottom: 11),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 224, 224, 224),
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: IconButton(
+                    icon: Icon(
+                      widget.defaultAppbarCloseIcon,
+                      color: widget.defaultAppbarForegroundColor,
+                      size: 18,
                     ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+              ),
+              expandedHeight: 114,
+              pinned: true,
+              flexibleSpace: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  final top = constraints.biggest.height;
+                  var paddingStart = 82 -
+                      (82 - 16) *
+                          (top - kToolbarHeight) /
+                          (114 - kToolbarHeight);
+                  paddingStart = paddingStart.clamp(16.0, 82.0);
+                  // if (kDebugMode) {
+                  //   print('$top - $kToolbarHeight - $paddingStart');
+                  // }
+
+                  return FlexibleSpaceBar(
+                    centerTitle: false,
+                    titlePadding: EdgeInsetsDirectional.only(
+                      start: paddingStart,
+                      bottom: 15,
+                    ),
+                    expandedTitleScale: 1.49,
+                    title: Text(
+                      widget.defaultAppbarText,
+                      style: TextStyle(
+                        color: widget.defaultAppbarForegroundColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 19,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          if (widget.showSearchBar)
+            SliverPersistentHeader(
+              delegate: _StickySearchBarDelegate(
+                searchBar: ColoredBox(
+                  color: widget.defaultAppbarBackgroundColor,
+                  child: CcpSearchBar(
+                    decoration: widget.searchBarDecoration,
+                    style: widget.searchBarTextStyle,
+                    onChanged: (query) {
+                      availableCountryCodes
+                        ..clear()
+                        ..addAll(
+                          List<CountryCode>.from(
+                            baseList.where(
+                              (c) {
+                                final country =
+                                    widget.localize ? c.localize(context) : c;
+
+                                return country.code
+                                        .toLowerCase()
+                                        .contains(query.toLowerCase()) ||
+                                    country.dialCode
+                                        .toLowerCase()
+                                        .contains(query.toLowerCase()) ||
+                                    country.name
+                                        .toLowerCase()
+                                        .contains(query.toLowerCase());
+                              },
+                            ),
+                          ),
+                        );
+                      setState(() {});
+                    },
+                  ),
+                ),
+                height: 60,
+              ),
+              pinned: true,
+            ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final code = availableCountryCodes[index];
+                final name =
+                    widget.localize ? code.localize(context).name : code.name;
+
+                final textTheme = Theme.of(context).textTheme;
+                return ListTile(
+                  onTap: () => Navigator.pop(context, code),
+                  leading: CircleFlag(code.code, size: 40),
+                  horizontalTitleGap: widget.horizontalTitleGap,
+                  title: Text(
+                    name,
+                    style: widget.countryTextStyle ?? textTheme.labelLarge,
+                  ),
+                  subtitle: CcpDefaultListItemTrailing(
+                    code: code,
+                    icon: widget.favoritesIcon,
+                    favorites: widget.favorites,
+                    showDialCode: widget.showDialCode,
+                    dialCodeTextStyle:
+                        widget.dialCodeTextStyle ?? textTheme.labelLarge,
                   ),
                 );
-              setState(() {});
-            },
+              },
+              childCount: availableCountryCodes.length,
+            ),
           ),
-        Expanded(
-          child: ScrollablePositionedList.builder(
-            itemScrollController: itemScrollController,
-            itemCount: availableCountryCodes.length,
-            itemBuilder: (context, index) {
-              final code = availableCountryCodes[index];
-              final name =
-                  widget.localize ? code.localize(context).name : code.name;
-
-              final textTheme = Theme.of(context).textTheme;
-
-              return ListTile(
-                onTap: () => Navigator.pop(context, code),
-                leading: CircleFlag(code.code, size: 40),
-                horizontalTitleGap: widget.horizontalTitleGap,
-                title: Text(
-                  name,
-                  style: widget.countryTextStyle ?? textTheme.labelLarge,
-                ),
-                subtitle: CcpDefaultListItemTrailing(
-                  code: code,
-                  icon: widget.favoritesIcon,
-                  favorites: widget.favorites,
-                  showDialCode: widget.showDialCode,
-                  dialCodeTextStyle:
-                      widget.dialCodeTextStyle ?? textTheme.labelLarge,
-                ),
-              );
-            },
-          ),
-        ),
-      ],
+        ],
+      ),
     );
+  }
+}
+
+class _StickySearchBarDelegate extends SliverPersistentHeaderDelegate {
+  _StickySearchBarDelegate({required this.searchBar, required this.height});
+  final Widget searchBar;
+  final double height;
+
+  @override
+  double get minExtent => height;
+  @override
+  double get maxExtent => height;
+
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    return SizedBox.expand(child: searchBar);
+  }
+
+  @override
+  bool shouldRebuild(_StickySearchBarDelegate oldDelegate) {
+    return searchBar != oldDelegate.searchBar || height != oldDelegate.height;
+  }
+}
+
+class _StickyTitleDelegate extends SliverPersistentHeaderDelegate {
+  _StickyTitleDelegate({required this.title, required this.height});
+  final Widget title;
+  final double height;
+
+  @override
+  double get minExtent => height;
+  @override
+  double get maxExtent => height;
+
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    return SizedBox.expand(child: title);
+  }
+
+  @override
+  bool shouldRebuild(_StickyTitleDelegate oldDelegate) {
+    return title != oldDelegate.title || height != oldDelegate.height;
   }
 }
