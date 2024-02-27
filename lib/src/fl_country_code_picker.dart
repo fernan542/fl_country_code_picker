@@ -16,6 +16,8 @@ class FlCountryCodePicker {
     this.title,
     this.defaultAppbarBackgroundColor = Colors.white,
     this.defaultAppbarForegroundColor = Colors.black,
+    this.defaultAppbarCloseIconBackgroundColor =
+        const Color.fromARGB(255, 224, 224, 224),
     this.defaultAppbarText = 'Select Country Code',
     this.defaultAppbarCloseIcon = Icons.clear_rounded,
     this.localize = true,
@@ -75,6 +77,11 @@ class FlCountryCodePicker {
   /// Color of icon and text.
   /// {@endtemplate}
   final Color defaultAppbarForegroundColor;
+
+  /// {@template default_appbar_close_icon_background_color}
+  /// Can be used to customize the background color of the close icon.
+  /// {@endtemplate}
+  final Color defaultAppbarCloseIconBackgroundColor;
 
   /// {@template default_appbar_text}
   /// It is the text of the default appbar.
@@ -204,6 +211,8 @@ class FlCountryCodePicker {
         title: title,
         defaultAppbarBackgroundColor: defaultAppbarBackgroundColor,
         defaultAppbarForegroundColor: defaultAppbarForegroundColor,
+        defaultAppbarCloseIconBackgroundColor:
+            defaultAppbarCloseIconBackgroundColor,
         defaultAppbarText: defaultAppbarText,
         defaultAppbarCloseIcon: defaultAppbarCloseIcon,
         localize: localize,

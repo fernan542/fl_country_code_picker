@@ -21,6 +21,8 @@ class CountryCodePickerModal extends StatefulWidget {
     this.title,
     this.defaultAppbarBackgroundColor = Colors.white,
     this.defaultAppbarForegroundColor = Colors.black,
+    this.defaultAppbarCloseIconBackgroundColor =
+        const Color.fromARGB(255, 224, 224, 224),
     this.defaultAppbarText = 'Select Country Code',
     this.defaultAppbarCloseIcon = Icons.clear_rounded,
     this.focusedCountry,
@@ -60,6 +62,9 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// {@macro default_appbar_foreground_color}
   final Color defaultAppbarForegroundColor;
+
+  /// {@macro default_appbar_close_icon_background_color}
+  final Color defaultAppbarCloseIconBackgroundColor;
 
   /// {@macro default_appbar_text}
   final String defaultAppbarText;
@@ -155,8 +160,8 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
               surfaceTintColor: Colors.transparent,
               leading: Container(
                 margin: const EdgeInsets.only(left: 16, top: 11, bottom: 11),
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 224, 224, 224),
+                decoration: BoxDecoration(
+                  color: widget.defaultAppbarCloseIconBackgroundColor,
                   shape: BoxShape.circle,
                 ),
                 child: Center(
