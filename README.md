@@ -92,6 +92,11 @@ MaterialApp(
 |Fields|Type| Description                                                                                                                                                                         |
 |:---:|:---:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **title** | `Widget?` | An optional argument for modal's title customization.
+| **defaultAppbarBackgroundColor** | `Color` | An optional argument to set the background color of default appbar. Its default value is `white`.
+| **defaultAppbarForegroundColor** | `Color` | An optional argument to set the foreground color of default appbar. It is the color of icon and text in the default appbar. Its default value is `black`.
+| **defaultAppbarCloseIconBackgroundColor** | `Color` | An optional argument to set the background color of the close icon on the appbar. Its default value is `Color.fromARGB(255, 224, 224, 224)`.
+| **defaultAppbarText** | `String` | An optional argument to change the title default appbar. Its default value is `Select Country Code`.
+| **defaultAppbarCloseIcon** | `IconData` | An optional argument to change the close icon of the default appbar. Its default value is `Icons.clear_rounded`.
 | **localize** | `bool` | An optional argument for localizing the country names based on device's current selected Language (country/region). Make sure to add the required delegates to your `MaterialApp`. Defaults to `true`.
 | **horizontalTitleGap** | `double?` | An optional argument for horizontal space between flag, country name, and trailing icon.
 | **searchBarDecoration** | `InputDecoration?` | An optional argument for appearance customization of modal's search bar.                                                                                                            
