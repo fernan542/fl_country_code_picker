@@ -21,7 +21,7 @@ const kInputDecoration = InputDecoration(
 const kFavoritesIcon = Icon(Icons.favorite, color: Colors.red);
 
 /// Default modal and TextField default borderRadius.
-const kBorderRadius = Radius.circular(10);
+const kBorderRadius = Radius.circular(7);
 
 /// Default modal background color.
 const kBackgroundColor = Color(0xFFFFFFFF);

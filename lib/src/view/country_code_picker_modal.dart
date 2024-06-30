@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:circle_flags/circle_flags.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:fl_country_code_picker/src/widgets/widgets.dart';
@@ -19,11 +21,18 @@ class CountryCodePickerModal extends StatefulWidget {
     required this.showSearchBar,
     required this.showDialCode,
     this.title,
-    this.defaultAppbarBackgroundColor = Colors.white,
+    this.defaultAppbarBackgroundColor = const Color(0xffEDF2F4),
     this.defaultAppbarForegroundColor = Colors.black,
     this.defaultAppbarCloseIconBackgroundColor =
         const Color.fromARGB(255, 224, 224, 224),
     this.defaultAppbarText = 'Select Country Code',
+    this.defaultAppBarTextStyle = const TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.w600,
+      fontSize: 19,
+    ),
+    this.isShowFlag = false,
+
     this.defaultAppbarCloseIcon = Icons.clear_rounded,
     this.focusedCountry,
     this.searchBarDecoration,
@@ -68,6 +77,8 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// {@macro default_appbar_text}
   final String defaultAppbarText;
+  /// {@macro default_appbar_text_style}
+  final TextStyle defaultAppBarTextStyle;
 
   /// {@macro default_appbar_close_icon}
   final IconData defaultAppbarCloseIcon;
@@ -89,6 +100,9 @@ class CountryCodePickerModal extends StatefulWidget {
 
   /// space between flag and country name
   final double? horizontalTitleGap;
+
+  /// show flag
+  final bool isShowFlag;
 
   @override
   State<CountryCodePickerModal> createState() => _CountryCodePickerModalState();
@@ -143,6 +157,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffEDF2F4),
       body: CustomScrollView(
         slivers: [
           if (widget.title != null)
@@ -155,28 +170,10 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
             )
           else
             SliverAppBar(
+              automaticallyImplyLeading: false,
               backgroundColor: widget.defaultAppbarBackgroundColor,
               foregroundColor: widget.defaultAppbarForegroundColor,
-              surfaceTintColor: Colors.transparent,
-              leading: Container(
-                margin: const EdgeInsets.only(left: 16, top: 11, bottom: 11),
-                decoration: BoxDecoration(
-                  color: widget.defaultAppbarCloseIconBackgroundColor,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: IconButton(
-                    icon: Icon(
-                      widget.defaultAppbarCloseIcon,
-                      color: widget.defaultAppbarForegroundColor,
-                      size: 18,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ),
-              ),
+              // surfaceTintColor: Colors.transparent,
               expandedHeight: 114,
               pinned: true,
               flexibleSpace: LayoutBuilder(
@@ -200,11 +197,7 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
                     expandedTitleScale: 1.49,
                     title: Text(
                       widget.defaultAppbarText,
-                      style: TextStyle(
-                        color: widget.defaultAppbarForegroundColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 19,
-                      ),
+                      style: widget.defaultAppBarTextStyle,
                     ),
                   );
                 },
@@ -257,15 +250,31 @@ class _CountryCodePickerModalState extends State<CountryCodePickerModal> {
                     widget.localize ? code.localize(context).name : code.name;
 
                 final textTheme = Theme.of(context).textTheme;
-                return ListTile(
+
+                return widget.isShowFlag ? ListTile(
                   onTap: () => Navigator.pop(context, code),
-                  leading: CircleFlag(code.code, size: 40),
+                  leading:  CircleFlag(code.code, size: 40),
                   horizontalTitleGap: widget.horizontalTitleGap,
                   title: Text(
                     name,
                     style: widget.countryTextStyle ?? textTheme.labelLarge,
                   ),
-                  subtitle: CcpDefaultListItemTrailing(
+                  trailing: CcpDefaultListItemTrailing(
+                    code: code,
+                    icon: widget.favoritesIcon,
+                    favorites: widget.favorites,
+                    showDialCode: widget.showDialCode,
+                    dialCodeTextStyle:
+                        widget.dialCodeTextStyle ?? textTheme.labelLarge,
+                  ),
+                ) : ListTile(
+                  onTap: () => Navigator.pop(context, code),
+                  horizontalTitleGap: widget.horizontalTitleGap,
+                  title: Text(
+                    name,
+                    style: widget.countryTextStyle ?? textTheme.labelLarge,
+                  ),
+                  trailing: CcpDefaultListItemTrailing(
                     code: code,
                     icon: widget.favoritesIcon,
                     favorites: widget.favorites,

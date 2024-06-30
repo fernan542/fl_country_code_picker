@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'dart:ui' as ui;
 
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
@@ -19,6 +21,11 @@ class FlCountryCodePicker {
     this.defaultAppbarCloseIconBackgroundColor =
         const Color.fromARGB(255, 224, 224, 224),
     this.defaultAppbarText = 'Select Country Code',
+    this.defaultAppBarTextStyle = const TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.w600,
+      fontSize: 19,
+    ),
     this.defaultAppbarCloseIcon = Icons.clear_rounded,
     this.localize = true,
     this.horizontalTitleGap,
@@ -31,6 +38,7 @@ class FlCountryCodePicker {
     this.countryTextStyle,
     this.dialCodeTextStyle,
     this.searchBarTextStyle,
+    this.isShowFlag = false,
   });
 
   /// {@template favorites_icon}
@@ -87,6 +95,8 @@ class FlCountryCodePicker {
   /// It is the text of the default appbar.
   /// {@endtemplate}
   final String defaultAppbarText;
+  /// {@macro default_appbar_text_style}
+  final TextStyle defaultAppBarTextStyle;
 
   /// {@template default_appbar_close_icon}
   /// It is the close icon of the default appbar.
@@ -144,6 +154,8 @@ class FlCountryCodePicker {
   /// are existing in this list.
   /// {@endtemplate}
   final List<String> filteredCountries;
+
+  final bool isShowFlag;
 
   /// Adds all favorites to the list.
   void addFavorites(List<String> countries) => favorites.addAll(countries);
@@ -214,6 +226,8 @@ class FlCountryCodePicker {
         defaultAppbarCloseIconBackgroundColor:
             defaultAppbarCloseIconBackgroundColor,
         defaultAppbarText: defaultAppbarText,
+        defaultAppBarTextStyle: defaultAppBarTextStyle,
+        isShowFlag: isShowFlag,
         defaultAppbarCloseIcon: defaultAppbarCloseIcon,
         localize: localize,
         favorites: favorites,
