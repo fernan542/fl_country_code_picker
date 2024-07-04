@@ -164,6 +164,7 @@ class FlCountryCodePicker {
     ShapeBorder shape = kShape,
     double pickerMinHeight = 150,
     double pickerMaxHeight = 500,
+    double pickerMaxWidth = double.infinity,
     String? initialSelectedLocale,
     bool scrollToDeviceLocale = false,
     Color barrierColor = kBarrierColor,
@@ -181,6 +182,7 @@ class FlCountryCodePicker {
     final constraints = BoxConstraints(
       maxHeight: maxHeight,
       minHeight: pickerMinHeight,
+      maxWidth: pickerMaxWidth,
     );
 
     // For automatic scrolling.

@@ -93,6 +93,7 @@ class _DefaultPickerViewState extends State<DefaultPickerView> {
                 final code = await countryPicker.showPicker(
                   context: context,
                   scrollToDeviceLocale: true,
+                  pickerMaxWidth: 600
                 );
                 if (code != null) {
                   setState(() => countryCode = code);
