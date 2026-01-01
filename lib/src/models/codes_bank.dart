@@ -549,6 +549,7 @@ const List<Map<String, dynamic>> codes = [
     "name": "India",
     "code": "IN",
     "dial_code": "+91",
+    "national_significant_number": 10,
   },
   {
     "name": "Indonesia",
